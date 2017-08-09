@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="块状和行内元素">
+<meta property="og:url" content="http://yoursite.com/2015/08/03/2015-08-03-blockandinline/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
+<meta property="og:updated_time" content="2017-08-09T09:42:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="块状和行内元素">
+<meta name="twitter:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
+<meta name="twitter:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>块状和行内元素</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2015/08/12/2015-08-12-htmlgloabalattribute/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&text=块状和行内元素"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&is_video=false&description=块状和行内元素"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=块状和行内元素&body=Check out this article: http://yoursite.com/2015/08/03/2015-08-03-blockandinline/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&name=块状和行内元素&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.0.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#个人总结"><span class="toc-number">1.0.2.</span> <span class="toc-text">个人总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">2.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">3.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">4.</span> <span class="toc-text">块级元素列表</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        块状和行内元素
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2015-08-02T16:00:00.000Z" itemprop="datePublished">2015-08-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/HTML/">HTML</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h4 id="MDN总结"><a href="#MDN总结" class="headerlink" title="MDN总结"></a>MDN总结</h4><ul>
+<li>解释<br>块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。</li>
+<li>内容<br>一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以包含行内元素和其他块级元素。这种结构上的包含继承区别可以使块级元素创建比行内元素更”大型“的结构。</li>
+<li>格式<br>默认情况下，行内元素不会以新行开始，而块级元素会新起一行</li>
+</ul>
+<blockquote>
+<p>以上是MDN里对块级和行内元素的几点说明。</p>
+</blockquote>
+<h4 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h4><ul>
+<li>总结<br>行内元素和块级元素的区别无非是在DOM结构渲染形式上所表现出来的不同而已。</li>
+<li>行内元素<ul>
+<li>行内元素根据它对应标签所包含的内容<code>自适应宽度</code>，不多也不少，刚好够装下它所包含的内容。因此没有必要再提供处理宽高、边距属性的能力，所以行内元素的宽高属性是默认无效的，而且行内元素只要宽度足够就一直从左向右排列不会换新行。</li>
+<li>行内元素的padding属性可设置(left和right正常，但padding-top和padding-bottom会有异常效果，见下)，margin只有左右可设置，上下margin默认无效。(那些个ctrl+v党们请验证啊，不然误人又误己)。</li>
+</ul>
+</li>
+<li>块状元素<ul>
+<li>默认占据其父元素的整个空间，也就是说它的宽度默认是父元素的100%，一个块状元素占据一行，即使他的宽度不够父元素容器的100%。一个块级元素占据一行，除非人为指定(比如float，各种position等)，那么一行只会存在一个块级元素。</li>
+</ul>
+</li>
+</ul>
+<h2 id="盒模型对比"><a href="#盒模型对比" class="headerlink" title="盒模型对比"></a>盒模型对比</h2><p>上面已经说过，行内元素设置宽高属性是无效的，这一点无需在讨论，重要的是行内元素的padding和margin属性的表现。先贴两张图说明问题。</p>
+<ul>
+<li><p><strong>行内元素设置padding-bottom</strong></p>
+<img src="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png" width="450" title="行内元素设置padding-bottom">
+</li>
+<li><p><strong>块级元素设置padding-bottom</strong></p>
+<img src="http://ojd8i48oc.bkt.clouddn.com/blog-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png" width="450" title="块级元素设置padding-bottom">
+</li>
+</ul>
+<blockquote>
+<p><strong>划重点</strong>:总的来说，行内元素只有左右两个方向可以正常设置margin和padding属性，上下margin直接无效，而上下padding会出现如上图所示的异于块状元素的渲染方式。</p>
+</blockquote>
+<h2 id="行内元素列表"><a href="#行内元素列表" class="headerlink" title="行内元素列表"></a>行内元素列表</h2><ul>
+<li>b, big, i, small, tt</li>
+<li>abbr, acronym, cite, code, dfn, em, kbd, strong, samp, var</li>
+<li>a, bdo, br, img, map, object, q, script, span, sub, sup</li>
+<li>button, input, label, select, textarea</li>
+</ul>
+<h2 id="块级元素列表"><a href="#块级元素列表" class="headerlink" title="块级元素列表"></a>块级元素列表</h2><p>以下是 HTML 中所有的块级元素列表（虽然”块级“在新的 HTML5 元素中没有明确定义）。</p>
+<ul>
+<li>&lt;address&gt;<br>联系方式信息。</li>
+<li>&lt;article&gt; <code>HTML5</code><br>文章内容。</li>
+<li>&lt;aside&gt; <code>HTML5</code><br>伴随内容。</li>
+<li>&lt;audio&gt; <code>HTML5</code><br>音频播放。</li>
+<li>&lt;blockquote&gt;<br>块引用。</li>
+<li>&lt;canvas&gt; <code>HTML5</code><br>绘制图形。</li>
+<li>&lt;dd&gt;<br>定义列表中定义条目描述。</li>
+<li>&lt;div&gt;<br>文档分区。</li>
+<li>&lt;dl&gt;<br>定义列表。</li>
+<li>&lt;fieldset&gt;<br>表单元素分组。</li>
+<li>&lt;figcaption&gt;  <code>HTML5</code><br>图文信息组标题</li>
+<li>&lt;figure&gt;  <code>HTML5</code><br>图文信息组 (参照 &lt;figcaption&gt;)。</li>
+<li>&lt;footer&gt;  <code>HTML5</code><br>区段尾或页尾。</li>
+<li>&lt;form&gt;<br>表单。</li>
+<li>&lt;h1&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;h4&gt;, &lt;h5&gt;, &lt;h6&gt;<br>标题级别 1-6.</li>
+<li>&lt;header&gt; <code>HTML5</code><br>区段头或页头。</li>
+<li>&lt;hgroup&gt; <code>HTML5</code><br>标题组。</li>
+<li>&lt;hr&gt;<br>水平分割线。</li>
+<li>&lt;noscript&gt;<br>不支持脚本或禁用脚本时显示的内容。</li>
+<li>&lt;ol&gt;<br>有序列表。</li>
+<li>&lt;output&gt; <code>HTML5</code><br>表单输出。</li>
+<li>&lt;p&gt;<br>行。</li>
+<li>&lt;pre&gt;<br>预格式化文本。</li>
+<li>&lt;section&gt; <code>HTML5</code><br>一个页面区段。</li>
+<li>&lt;table&gt;<br>表格。</li>
+<li>&lt;tfoot&gt;<br>表脚注。</li>
+<li>&lt;ul&gt;<br>无序列表。</li>
+<li>&lt;video&gt; <code>HTML5</code><br>视频。</li>
+</ul>
+<div class="tip"><br>参考文档:  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements" target="_blank" rel="external">Block-level_elements</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements" target="_blank" rel="external">Inline_elements</a><br></div>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.0.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#个人总结"><span class="toc-number">1.0.2.</span> <span class="toc-text">个人总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">2.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">3.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">4.</span> <span class="toc-text">块级元素列表</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&text=块状和行内元素"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&is_video=false&description=块状和行内元素"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=块状和行内元素&body=Check out this article: http://yoursite.com/2015/08/03/2015-08-03-blockandinline/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&title=块状和行内元素"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2015/08/03/2015-08-03-blockandinline/&name=块状和行内元素&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wangjz1991';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

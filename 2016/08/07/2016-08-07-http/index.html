@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="概述1. 引言每天，都有数以亿万计的JPEG 图片、HTML 页面、文本文件、MPEG 电影、WAV音频文件、Java 小程序和其他资源在因特网上传输过来传输过去。依靠的便是HTTP协议，依靠HTTP协议可以从遍布全世界的Web服务器上将这些信息块迅速、便捷、可靠地搬移到人们桌面上的Web 浏览器上去。 HTTP 使用的是可靠的数据传输协议，因此即使数据来自地球的另一端，它也能够确保数据在传输的过">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http常用知识总结">
+<meta property="og:url" content="http://yoursite.com/2016/08/07/2016-08-07-http/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="概述1. 引言每天，都有数以亿万计的JPEG 图片、HTML 页面、文本文件、MPEG 电影、WAV音频文件、Java 小程序和其他资源在因特网上传输过来传输过去。依靠的便是HTTP协议，依靠HTTP协议可以从遍布全世界的Web服务器上将这些信息块迅速、便捷、可靠地搬移到人们桌面上的Web 浏览器上去。 HTTP 使用的是可靠的数据传输协议，因此即使数据来自地球的另一端，它也能够确保数据在传输的过">
+<meta property="og:image" content="http://p1.bqimg.com/1949/09441aaf166de7a6.png">
+<meta property="og:image" content="http://pic-1251895434.cosgz.myqcloud.com/http/http_protocol_meitu_2.jpg">
+<meta property="og:image" content="http://pic-1251895434.cosgz.myqcloud.com/http/http_baowen_meitu_3.jpg">
+<meta property="og:image" content="http://pic-1251895434.cosgz.myqcloud.com/http/http_chrome_meitu_4.jpg">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http常用知识总结">
+<meta name="twitter:description" content="概述1. 引言每天，都有数以亿万计的JPEG 图片、HTML 页面、文本文件、MPEG 电影、WAV音频文件、Java 小程序和其他资源在因特网上传输过来传输过去。依靠的便是HTTP协议，依靠HTTP协议可以从遍布全世界的Web服务器上将这些信息块迅速、便捷、可靠地搬移到人们桌面上的Web 浏览器上去。 HTTP 使用的是可靠的数据传输协议，因此即使数据来自地球的另一端，它也能够确保数据在传输的过">
+<meta name="twitter:image" content="http://p1.bqimg.com/1949/09441aaf166de7a6.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Http常用知识总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/10/26/2016-10-26-jade1/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/06/25/2016-06-25-im/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/08/07/2016-08-07-http/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/08/07/2016-08-07-http/&text=Http常用知识总结"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/08/07/2016-08-07-http/&is_video=false&description=Http常用知识总结"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Http常用知识总结&body=Check out this article: http://yoursite.com/2016/08/07/2016-08-07-http/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/08/07/2016-08-07-http/&name=Http常用知识总结&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引言"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-概念"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-目的"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 目的</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP在协议栈的位置"><span class="toc-number">2.</span> <span class="toc-text">HTTP在协议栈的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体类型"><span class="toc-number">3.</span> <span class="toc-text">媒体类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">4.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP特性"><span class="toc-number">5.</span> <span class="toc-text">HTTP特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报文"><span class="toc-number">6.</span> <span class="toc-text">报文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次完整的HTTP通信"><span class="toc-number">7.</span> <span class="toc-text">一次完整的HTTP通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跨域"><span class="toc-number">8.</span> <span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP的基本优化"><span class="toc-number">9.</span> <span class="toc-text">HTTP的基本优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPDY-协议"><span class="toc-number">10.</span> <span class="toc-text">SPDY 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-2"><span class="toc-number">11.</span> <span class="toc-text">HTTP/2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">12.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Http常用知识总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-08-06T16:00:00.000Z" itemprop="datePublished">2016-08-07</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络/">计算机网络</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h4><p>每天，都有数以亿万计的JPEG 图片、HTML 页面、文本文件、MPEG 电影、WAV音频文件、Java 小程序和其他资源在因特网上传输过来传输过去。依靠的便是HTTP协议，依靠HTTP协议可以从遍布全世界的Web服务器上将这些信息块迅速、便捷、可靠地搬移到人们桌面上的Web 浏览器上去。</p>
+<p>HTTP 使用的是可靠的数据传输协议，因此即使数据来自地球的另一端，它也能够确保数据在传输的过程中不会被损坏或产生混乱。</p>
+<blockquote>
+<p>HTTP的发展历程图:<br><img src="http://p1.bqimg.com/1949/09441aaf166de7a6.png" alt="HTTP的发展历程"></p>
+</blockquote>
+<h4 id="2-概念"><a href="#2-概念" class="headerlink" title="2. 概念"></a>2. 概念</h4><p><strong>HTTP</strong>(Hyper-Text Transfer Protocol),翻译过来即超文本传输协议。</p>
+<p>首先明确HTTP是一种协议，是一个客户端和服务端请求应答的标准。就和EMCAScript一样，只是某些协会定义的一套标准，而非具体实现。EMCAScript实现由各大浏览器提供，所以才会有了不同的浏览器出现不同的API标准。HTTP协议也由各大浏览器实现，但不同浏览器之间的实现趋近。</p>
+<h4 id="3-目的"><a href="#3-目的" class="headerlink" title="3. 目的"></a>3. 目的</h4><p>既然是网络传输协议，必然定义了如何在网络传输信息。此处的信息即我们通过浏览器浏览各大网站所能看到的所有的内容，这些内容统一称为超级文本。</p>
+<p>http的作用便是用来定义如何在C和S之间进行超文本信息的传输。</p>
+<h2 id="HTTP在协议栈的位置"><a href="#HTTP在协议栈的位置" class="headerlink" title="HTTP在协议栈的位置"></a>HTTP在协议栈的位置</h2><p>根据TCP/IP模型可以知道，HTTP协议通常承载于TCP协议之上,属于应用层，由传输层为其提供服务，负责端到端的进程之间的通信。HTTP无需操心网络通信的具体细节；它把联网的细节都交给了通用、可靠的因特网传输协议TCP/IP。</p>
+<p>所以HTTP协议的瓶颈及其优化技巧都是基于TCP协议本身的特性，例如tcp建立连接的3次握手和断开连接的4次挥手以及每次建立连接带来的RTT延迟时间。</p>
+<p>由OSI模型可以知道，TCP协议之上有一层包含了SSL、TLS协议，如果HTTP承载于该协议之上，这个时候就是我们常说的HTTPS。有些地方也说HTTPS协议是安全版本的HTTP协议，这样表述问题倒也不是很大。</p>
+<p><strong>HTTPS与HTTP的一些区别:</strong></p>
+<ul>
+<li>HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。</li>
+<li>HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。</li>
+<li>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</li>
+<li>HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。</li>
+</ul>
+<h2 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h2><p>因特网上有数千种不同的数据类型，HTTP 仔细地给每种要通过Web 传输的对象都打上了名为MIME 类型（MIME type） 的数据格式标签。最初设计MIME（Multipurpose Internet Mail Extension，<br>多用途因特网邮件扩展）是为了解决在不同的电子邮件系统之间搬移报文时存在的问题。MIME 在电子邮件系统中工作得非常好，因此HTTP 也采纳了它，用它来描述并标记多媒体内容。</p>
+<p>Web 服务器会为所有HTTP 对象数据附加一个MIME类型。当Web浏览器从服务器中取回一个对象时，会去查看相关的MIME类型，看看它是否知道应该如何处理这个对象。大多数浏览器都可以处理数百种常见的对象类型：显示图片文件、解析并格式化HTML文件、通过计算机声卡播放音频文件，或者运行外部插件软件来处理特殊格式的数据。</p>
+<p>常见的媒体类型：</p>
+<ul>
+<li>text/plain</li>
+<li>text/html</li>
+<li>text/css</li>
+<li>image/jpeg</li>
+<li>image/png</li>
+<li>image/svg+xml</li>
+<li>audio/mp4</li>
+<li>video/mp4</li>
+<li>application/javascript</li>
+<li>application/pdf</li>
+<li>application/zip</li>
+<li>application/atom+xml</li>
+</ul>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>URL 描述了一台特定服务器上某资源的特定位置。它们可以明确说明如何从一个精确、固定的位置获取资源。</p>
+<p>下图显示了URL如何精确地说明某资源的位置以及如何去访问它：</p>
+<blockquote>
+<p>URL解析示意:</p>
+</blockquote>
+<p><img src="http://pic-1251895434.cosgz.myqcloud.com/http/http_protocol_meitu_2.jpg" alt="URL解析"></p>
+<p>大部分URL 都遵循一种标准格式，这种格式包含三个部分。</p>
+<ul>
+<li>URL的第一部分被称为方案（scheme），说明了访问资源所使用的协议类型。这部分通常就是HTTP协议（<a href="http://），浏览器默认为HTTP。" target="_blank" rel="external">http://），浏览器默认为HTTP。</a></li>
+<li>第二部分给出了服务器的因特网地址（比如，www.joes-hardware.com），即目标资源主机别名。</li>
+<li>其余部分指定了 Web 服务器上的某个资源（比如，/specials/saw-blade.gif），这部分一般为路径加资源名称。</li>
+</ul>
+<p>常见的HTTP方案URL格式：</p>
+<p>scheme://host:port/path?query##frag</p>
+<h2 id="HTTP特性"><a href="#HTTP特性" class="headerlink" title="HTTP特性"></a>HTTP特性</h2><ul>
+<li>无状态。无状态是指对于事务处理没有记忆能力，每次请求都是相互独立的。</li>
+<li>无连接。无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。</li>
+<li>请求响应范式。该模型限制了HTTP传输必须由客户端发起请求，服务端收到请求才能做出响应。不存在服务端主动推送消息的情况。即每一个HTTP响应必然对应一个HTTP请求。</li>
+</ul>
+<h2 id="报文"><a href="#报文" class="headerlink" title="报文"></a>报文</h2><p>HTTP 报文是由一行一行的简单字符串组成的。HTTP报文都是纯文本，不是二进制代码，所以人们可以很方便地对其进行读写。HTTP请求和响应报文的格式很类似。只不过请求报文一般不会包含实体，而响应报文的数据都在实体中。</p>
+<p>HTTP 报文包括以下三个部分。</p>
+<ul>
+<li>起始行</li>
+</ul>
+<p>报文的第一行就是起始行，在请求报文中用来说明要做些什么，在响应报文中说明出现了什么情况。</p>
+<p><strong>方法（method）：</strong> 客户端希望服务器对资源执行的动作。是一个单独的词，比如GET、HEAD 或POST。</p>
+<p><strong>请求URL（request-URL）：</strong> 命名了所请求资源，或者URL 路径组件的完整URL。如果直接与服务器进行对话，只要URL 的路径组件是资源的绝对路径，通常就不会有什么问题——服务器可以假定自己是URL 的主机/ 端口。</p>
+<p><strong>版本（version）：</strong> 报文所使用的HTTP 版本，其格式看起来是这样的：HTTP/<major>.<minor>，其中主要版本号（major）和次要版本号（minor）都是整数。</minor></major></p>
+<p><strong>状态码（status-code）：</strong> 这三位数字描述了请求过程中所发生的情况。每个状态码的第一位数字都用于描述状态的一般类别（“成功”、“出错”等）。</p>
+<p><strong>原因短语（reason-phrase）：</strong> 数字状态码的可读版本，包含行终止序列之前的所有文本。原因短语只对人类有意义，因此，比如说，尽管响应行HTTP/1.0 200 NOT OK 和 HTTP/1.0 200 OK 中原因短语的含义不同，但同<br>样都会被当作成功指示处理。</p>
+<ul>
+<li>首部字段</li>
+</ul>
+<p>起始行后面有零个或多个首部字段。每个首部字段都包含一个名字和一个值，为了便于解析，两者之间用冒号（:）来分隔。首部以一个空行结束。添加一个首部字段和添加新行一样简单。</p>
+<ul>
+<li>主体</li>
+</ul>
+<p>空行之后就是可选的报文主体了，其中包含了所有类型的数据。请求主体中包括了要发送给Web 服务器的数据；响应主体中装载了要返回给客户端的数据。起始行和首部都是文本形式且都是结构化的，而主体则不同，主体中可以包含任意的二进制数据（比如图片、视频、音轨、软件程序）。当然，主体中也可以包含文本。</p>
+<blockquote>
+<p>报文示例:</p>
+</blockquote>
+<p><img src="http://pic-1251895434.cosgz.myqcloud.com/http/http_baowen_meitu_3.jpg" alt="报文示例"></p>
+<blockquote>
+<p>chrome抓取网络请求截图:</p>
+</blockquote>
+<p><img src="http://pic-1251895434.cosgz.myqcloud.com/http/http_chrome_meitu_4.jpg" alt="chrome抓取网络请求截图"></p>
+<h2 id="一次完整的HTTP通信"><a href="#一次完整的HTTP通信" class="headerlink" title="一次完整的HTTP通信"></a>一次完整的HTTP通信</h2><p>这个点是很多前端面试都经常会谈到的一个点。</p>
+<ul>
+<li>浏览器发起请求。比如你在地址栏里打一个网站的地址，比如页面上引用了某个css或者js文件，又或者你发起了一个ajax请求。</li>
+<li>域名解析。我们肉眼所见主机名一般都是如www.baidu.com类似的语义化的字符串，而网络主机真实地址则是ip地址，所以第一步会通过DNS进行主机名到ip地址的映射</li>
+<li>TCP三次握手，建立客户端到服务器的网络传输通道</li>
+<li>握手成功后，浏览器发送请求报文</li>
+<li>服务器应答，服务器向浏览器发送应答报文</li>
+<li>服务器关闭TCP连接，一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码：<br>Connection:keep-alive，TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求。保持连接节省了为每个请求建立新连接所需的时间，还节约了网络带宽。</li>
+</ul>
+<h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><p>域指什么？</p>
+<p><a href="http://www.baidu.com:80" target="_blank" rel="external">http://www.baidu.com:80</a><br>http:方案<br>www.baidu.com:主机名<br>80：端口</p>
+<p>这三者如果有一处不同，则视为跨域。</p>
+<p>在广域网环境中，由于浏览器的安全限制，网络连接的跨域访问时不被允许的，XmlHttpRequest也不例外。但有时候跨域访问资源是必需的。<br>同源策略阻止从一个域上加载的脚本获取或操作另一个域上的文档属性。也就是说，受到请求的 URL 的域必须与当前 Web 页面的域相同。这意味着浏览器隔离来自不同源的内容，以防止它们之间的操作。同源策略不阻止将动态脚本元素插入文档中。</p>
+<p>所以解决跨域应用最广泛的便是JSONP协议，即动态插入js标签，将数据作为js函数参数写入js文件中，我们通过执行该js文件的函数便可以获取到想要的数据。此种方法已经不再是ajax的内容。</p>
+<h2 id="HTTP的基本优化"><a href="#HTTP的基本优化" class="headerlink" title="HTTP的基本优化"></a>HTTP的基本优化</h2><p>影响一个HTTP网络请求的因素主要有两个：带宽和延迟。</p>
+<p>带宽：如果说我们还停留在拨号上网的阶段，带宽可能会成为一个比较严重影响请求的问题，但是现在网络基础建设已经使得带宽得到极大的提升，我们不再会担心由带宽而影响网速，那么就只剩下延迟了。</p>
+<p>延迟：浏览器阻塞（HOL blocking）：浏览器会因为一些原因阻塞请求。浏览器对于同一个域名，同时只能有 4 个连接（这个根据浏览器内核不同可能会有所差异），超过浏览器最大连接数限制，后续<br>请求就会被阻塞。</p>
+<p>DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。这个通常可以利用DNS缓存结果来达到减少这个时间的目的。</p>
+<p>建立连接（Initial connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文，达到真正的建立连接，但是这些连接无法复用会导致每次请求都经历三次<br>握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。</p>
+<h2 id="SPDY-协议"><a href="#SPDY-协议" class="headerlink" title="SPDY 协议"></a>SPDY 协议</h2><p>2009年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。这个协议在Chrome浏览器上证明可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。</p>
+<h2 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h2><p>todo</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>作为一个前端开发者，最基本的从客户端(大多数情况为浏览器)发起一个http请求，到接收到该请求对应的服务端作出的响应。这中间的整个过程要了解。前端岗位对于http、对于网络通信层面的东<br>西，不能仅仅局限在会用jQuery已经包装好的ajax的功能函数，对于其中涉及到的一些细节以及实现方法也应有所掌握。</p>
+<p>关于http我们所要掌握的当然是越多越好，最基本的也应该要掌握一个请求从发出到收到响应这中间所经过了哪些流程。实际开发中，我们应该学会利用常用的抓包工具，比如浏览器自带的开发者工具<br>中的network面板、fiddler等，了解请求、响应报文格式，各种状态码，缓存策略，cookie,跨域解决方案等。</p>
+<p>很难在一篇文章里写完所有的知识点，关于http的更多内容可以阅读《http权威指南》一书，该书详尽的讲解了http的所有细节，也可以当做工具书查阅相关知识。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-引言"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 引言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-概念"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-目的"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 目的</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP在协议栈的位置"><span class="toc-number">2.</span> <span class="toc-text">HTTP在协议栈的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#媒体类型"><span class="toc-number">3.</span> <span class="toc-text">媒体类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL"><span class="toc-number">4.</span> <span class="toc-text">URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP特性"><span class="toc-number">5.</span> <span class="toc-text">HTTP特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报文"><span class="toc-number">6.</span> <span class="toc-text">报文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一次完整的HTTP通信"><span class="toc-number">7.</span> <span class="toc-text">一次完整的HTTP通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跨域"><span class="toc-number">8.</span> <span class="toc-text">跨域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP的基本优化"><span class="toc-number">9.</span> <span class="toc-text">HTTP的基本优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPDY-协议"><span class="toc-number">10.</span> <span class="toc-text">SPDY 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-2"><span class="toc-number">11.</span> <span class="toc-text">HTTP/2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">12.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/08/07/2016-08-07-http/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/08/07/2016-08-07-http/&text=Http常用知识总结"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/08/07/2016-08-07-http/&is_video=false&description=Http常用知识总结"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Http常用知识总结&body=Check out this article: http://yoursite.com/2016/08/07/2016-08-07-http/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/08/07/2016-08-07-http/&title=Http常用知识总结"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/08/07/2016-08-07-http/&name=Http常用知识总结&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wangjz1991';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

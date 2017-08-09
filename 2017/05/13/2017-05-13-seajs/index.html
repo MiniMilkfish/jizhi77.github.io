@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="一. 定义模块 说明：cmd用define来定义一个模块，define是一个暴露在全局的功能函数，使用方法为define(id?,deps?,factory)。  例1:常见形式12345678// moduleAdefine(function(require,exports,module) &amp;#123;  var name = &apos;ModuleA&apos;  exports.name = name;&amp;#1">
+<meta name="keywords" content="模块化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seajs 的模块定义和模块标识">
+<meta property="og:url" content="http://yoursite.com/2017/05/13/2017-05-13-seajs/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="一. 定义模块 说明：cmd用define来定义一个模块，define是一个暴露在全局的功能函数，使用方法为define(id?,deps?,factory)。  例1:常见形式12345678// moduleAdefine(function(require,exports,module) &amp;#123;  var name = &apos;ModuleA&apos;  exports.name = name;&amp;#1">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Seajs 的模块定义和模块标识">
+<meta name="twitter:description" content="一. 定义模块 说明：cmd用define来定义一个模块，define是一个暴露在全局的功能函数，使用方法为define(id?,deps?,factory)。  例1:常见形式12345678// moduleAdefine(function(require,exports,module) &amp;#123;  var name = &apos;ModuleA&apos;  exports.name = name;&amp;#1">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Seajs 的模块定义和模块标识</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/05/20/2017-05-21-generator/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/05/02/2017-05-02-cache1/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/05/13/2017-05-13-seajs/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&text=Seajs 的模块定义和模块标识"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&is_video=false&description=Seajs 的模块定义和模块标识"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Seajs 的模块定义和模块标识&body=Check out this article: http://yoursite.com/2017/05/13/2017-05-13-seajs/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&name=Seajs 的模块定义和模块标识&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-定义模块"><span class="toc-number">1.</span> <span class="toc-text">一. 定义模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例1-常见形式"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">例1:常见形式</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-模块标识"><span class="toc-number">2.</span> <span class="toc-text">二. 模块标识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相对标识"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">相对标识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#顶级标识"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">顶级标识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通路径"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">普通路径</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Seajs 的模块定义和模块标识
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-12T16:00:00.000Z" itemprop="datePublished">2017-05-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/模块化/">模块化</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="一-定义模块"><a href="#一-定义模块" class="headerlink" title="一. 定义模块"></a>一. 定义模块</h1><blockquote>
+<p>说明：<code>cmd</code>用<code>define</code>来定义一个模块，<code>define</code>是一个暴露在全局的功能函数，使用方法为<code>define(id?,deps?,factory)</code>。</p>
+</blockquote>
+<h4 id="例1-常见形式"><a href="#例1-常见形式" class="headerlink" title="例1:常见形式"></a>例1:常见形式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// moduleA</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require,exports,module</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> name = <span class="string">'ModuleA'</span></div><div class="line"></div><div class="line">  exports.name = name;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// moduleB</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require,exports,module</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  exports.add= add();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// index</span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'moduleA'</span>);</div><div class="line">  <span class="keyword">var</span> moduleB = <span class="built_in">require</span>(<span class="string">'moduleB'</span>);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> indexNameFromA = moduleA.name;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> indexAddFromB = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">10</span> + moduleB.add(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    indexName: indexNameFromA,</div><div class="line">    indexAdd: indexAddFromB</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>一个文件即为一个模块</li>
+<li>define最多接受三个参数：id、deps、factory。</li>
+<li>id：模块标识符，可选</li>
+<li>deps：显示声明该模块的依赖项，可选</li>
+<li>factory：模块工厂</li>
+</ul>
+<p><strong>说明：</strong></p>
+<p><em>id</em></p>
+<p>详见-模块标识。</p>
+<p><em>deps</em></p>
+<p>依赖项，标识规则详见-模块标识。</p>
+<p><em>factory</em></p>
+<p>factory可以是一个函数或其他有效的值。如果factory是一个函数，函数的其他三个参数(如果指定)必须是“require、exports、module”，当然也可以不指定任何参数或按顺序只指定一个或两个参数。如果factory不是函数，那么该模块的导出(即exports对象)将被设置为该对象。</p>
+<p><em>require</em></p>
+<p>require是模块内自由变量(未被暴露于全局作用域)，用来引入一个模块。被引入的模块的加载执行时机为在require语句执行时，此即模块的依赖延迟，而不像AMD的依赖前置(模块依赖项必须显示声明在deps中，而且在factory回调函数执行前便被加载并执行)。</p>
+<p><em>exports</em></p>
+<p>exports也是模块内自由变量，用来添加模块API。通过扩展exports对象便可将该模块的有关变量或函数添加到该模块的外露API中。</p>
+<p><em>module</em></p>
+<p>module也是模块内自用变量，同样用来添加模块API。与exports的区别可参考JavaScript语言的对象特性。exports通过添加自身属性暴露API，而module通过给module.exports赋值来一次性输出所有的API。</p>
+<p>exports是module.exports的引用，给exports或者给module.exports添加属性时，两者指向相同的引用地址，因此操作对象相同。而当直接给exports赋值时，此时exports便指向其他地址，而不再指向module.exports的引用地址，因此不会改变module.exports。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</div><div class="line">  exports: &#123;&#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports; <span class="comment">// 0x12345=&gt;&#123;&#125;</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(exports); <span class="comment">// 0x12345=&gt;&#123;&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports); <span class="comment">// 0x12345=&gt;&#123;&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports === exports); <span class="comment">// 0x12345 true</span></div><div class="line"></div><div class="line">exports.name = <span class="string">'wangjizhi'</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(exports); <span class="comment">// 0x12345=&gt;&#123;name: 'wangjizhi'&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports); <span class="comment">// 0x12345=&gt;&#123;name: 'wangjizhi'&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports === exports); <span class="comment">// 0x12345 true</span></div><div class="line"></div><div class="line"></div><div class="line">exports = &#123;</div><div class="line">  name: <span class="string">'wangjizhi'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(exports); <span class="comment">// 0x54321=&gt;&#123;name: 'wangjizhi'&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports); <span class="comment">// 0x12345=&gt;&#123;name: 'wangjizhi'&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">module</span>.exports === exports); <span class="comment">// 0x12345 === 0x54321 =&gt; false</span></div></pre></td></tr></table></figure>
+<h1 id="二-模块标识"><a href="#二-模块标识" class="headerlink" title="二. 模块标识"></a>二. 模块标识</h1><p>要想弄清楚模块标识，首先应该弄清楚以下几个概念：相对标识、顶级标识、普通路径；而且还要结合标识出现的地方加以分类总结，seajs中会出现模块标识的地方有use、define的标识和define的factory内部require。</p>
+<p>模块标识遵循以下原则：</p>
+<ul>
+<li>一个模块标识由斜线<code>/</code>分隔的多项组成，每一项必须是小驼峰字符串、<code>.</code>或<code>..</code>三种中的一种</li>
+<li>模块标识分为<code>顶级</code>和<code>相对标识</code>。相对标识第一项是首字母以<code>.</code>或<code>/</code>开始，其余为顶级标识</li>
+<li><code>顶级标识</code>根据模块系统的基础路径来解析，<code>相对标</code>识相对require所在模块的路径来解析。</li>
+</ul>
+<h4 id="相对标识"><a href="#相对标识" class="headerlink" title="相对标识"></a>相对标识</h4><p>相对标识以<code>.</code>开头。另外相对路径分为：<code>./</code>当前路径；<code>../</code>上一级路径。根路径<code>/</code>不是相对路径，所以不作为相对标识处理。</p>
+<p><em>use</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">use(id,<span class="function"><span class="keyword">function</span>(<span class="params">idModule</span>)</span>&#123;</div><div class="line"></div><div class="line">&#125;)</div><div class="line"></div><div class="line">use([<span class="string">'id1'</span>,<span class="string">'id2'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">id1Module,idModule2</span>)</span>&#123;</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>当use中的id标识为相对标识时，始终相对于当前页面。</p>
+<p>当前页面：<code>http://wangjizhi.com/posts/index.html</code></p>
+<ul>
+<li><code>use(&#39;./index&#39;,function(){})</code>请求地址为：<code>http://wangjizhi.com/posts/index.js</code></li>
+<li><code>use(&#39;../index&#39;,function(){})</code>请求地址为：<code>http://wangjizhi.com/index.js</code></li>
+</ul>
+<p><em>define</em></p>
+<p>define中有三处涉及id标识。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(<span class="string">'index'</span>,[<span class="string">'./ocs/moduleA'</span>,<span class="string">'./ocs/moduleB'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'./ocs/moduleA'</span>);</div><div class="line">    <span class="keyword">var</span> moduleB = <span class="built_in">require</span>(<span class="string">'./ocs/moduleB'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>加载一个模块的时候，先检查当前模块标识是否和加载时指定的标识相同，比如有一处<code>require(indexA)</code>，而在indexA模块中自定义模块标识为<code>indexB</code>，此时加载到了indexB文件，但是却不会执行回调。</li>
+<li>依赖项中的模块标识，加载规则同factory回调中的规则</li>
+<li>回调中的规则为：相对路径始终相对于当前模块</li>
+</ul>
+<p>当前页面：<code>http://wangjizhi.com/posts/index.html</code><br>当前模块：<code>http://g.alicdn.com/cn/its/2.0.23/page/index.js</code></p>
+<ul>
+<li><code>require(&#39;./moduleA&#39;)</code>请求地址为：<code>http://g.alicdn.com/cn/its/2.0.23/page/moduleA.js</code></li>
+<li><code>require(&#39;../moduleA&#39;)</code>请求地址为：<code>http://wangjizhi.com/moduleA.js</code></li>
+</ul>
+<h4 id="顶级标识"><a href="#顶级标识" class="headerlink" title="顶级标识"></a>顶级标识</h4><p>不以<code>.</code>或<code>/</code>开始的路径。会相对模块系统的基础路径（即 Sea.js 的 base 路径）来解析。</p>
+<ul>
+<li>块系统的基础路径即 base 的默认值，与 sea.js 的访问路径相关</li>
+<li>当 sea.js 的访问路径中含有版本号时，base 不会包含 seajs/x.y.z 字串。 当 sea.js 有多个版本时，这样会很方便。</li>
+<li>当然，也可以手工配置 base 路径，同时也会解析其他配置项的替换</li>
+</ul>
+<p>seajs所在路径：<code>http://g.alicdn.com/cn/its/2.0.23/lib/seajs.js</code>，此时base默认为：<code>http://g.alicdn.com/cn/its/2.0.23/lib/</code></p>
+<ul>
+<li><code>require(&#39;moduleA&#39;)</code>请求地址为：<code>http://g.alicdn.com/cn/its/2.0.23/lib/ocs/moduleA.js</code></li>
+</ul>
+<h4 id="普通路径"><a href="#普通路径" class="headerlink" title="普通路径"></a>普通路径</h4><p>除了相对标识(以<code>.</code>开头)、绝对标识(不以<code>.</code>或<code>/</code>开头的)，其他的都是普通路径。普通路径解析规则同HTLM中的路径解析规则。</p>
+<p>当前页面：<code>http://wangjizhi.com/posts/index.html</code></p>
+<ul>
+<li>根路径<code>/index</code>，请求地址为：<code>http://wangjizhi.com/index.js</code></li>
+<li>动态协议<code>//g.alicdn.com/cn/its/page/index</code>，请求地址位：<code>//g.alicdn.com/cn/its/page/index</code></li>
+<li>其他，均和HTML中引用资源的规则相同</li>
+</ul>
+<blockquote>
+<p>总而言之：seajs中的模块标识解析规则做三类区分。1.相对标识以<code>.</code>开头，在use情景中相对于当前页面地址，define情景总相对于当前模块目录；2.顶级标识不以<code>.</code>和<code>/</code>开头，在所有情景中都按照seajs的base路径和配置项解析；3.其余的均为普通标识，按照普通的资源引用的规则解析。</p>
+</blockquote>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-定义模块"><span class="toc-number">1.</span> <span class="toc-text">一. 定义模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例1-常见形式"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">例1:常见形式</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-模块标识"><span class="toc-number">2.</span> <span class="toc-text">二. 模块标识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#相对标识"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">相对标识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#顶级标识"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">顶级标识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#普通路径"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">普通路径</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/05/13/2017-05-13-seajs/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&text=Seajs 的模块定义和模块标识"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&is_video=false&description=Seajs 的模块定义和模块标识"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Seajs 的模块定义和模块标识&body=Check out this article: http://yoursite.com/2017/05/13/2017-05-13-seajs/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&title=Seajs 的模块定义和模块标识"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/05/13/2017-05-13-seajs/&name=Seajs 的模块定义和模块标识&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wangjz1991';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

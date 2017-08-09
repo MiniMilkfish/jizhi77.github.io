@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="物理层概念物理层的主要任务是描述确定与传输媒体接口有关的一些特性：  机械特性 指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等，平常所见的各种规格的接插件都有严格的标准化的规定 电气特性 指明在接口电缆的各条线上出现的电压范围 功能特性 指明某条线上出现的某一电平的电压表示何种意义 过程特性 指明对于不同功能的各种可能事件的出现顺序  通信的目的是传送消息，如文本、图片、语音等，">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理层和链路层">
+<meta property="og:url" content="http://yoursite.com/2017/05/02/2017-05-02-net2/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="物理层概念物理层的主要任务是描述确定与传输媒体接口有关的一些特性：  机械特性 指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等，平常所见的各种规格的接插件都有严格的标准化的规定 电气特性 指明在接口电缆的各条线上出现的电压范围 功能特性 指明某条线上出现的某一电平的电压表示何种意义 过程特性 指明对于不同功能的各种可能事件的出现顺序  通信的目的是传送消息，如文本、图片、语音等，">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物理层和链路层">
+<meta name="twitter:description" content="物理层概念物理层的主要任务是描述确定与传输媒体接口有关的一些特性：  机械特性 指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等，平常所见的各种规格的接插件都有严格的标准化的规定 电气特性 指明在接口电缆的各条线上出现的电压范围 功能特性 指明某条线上出现的某一电平的电压表示何种意义 过程特性 指明对于不同功能的各种可能事件的出现顺序  通信的目的是传送消息，如文本、图片、语音等，">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>物理层和链路层</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/05/02/2017-05-02-net3/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/04/28/2017-04-28-regexp2/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/05/02/2017-05-02-net2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&text=物理层和链路层"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&is_video=false&description=物理层和链路层"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=物理层和链路层&body=Check out this article: http://yoursite.com/2017/05/02/2017-05-02-net2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&name=物理层和链路层&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#物理层概念"><span class="toc-number">1.</span> <span class="toc-text">物理层概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链路层"><span class="toc-number">2.</span> <span class="toc-text">链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">概念</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        物理层和链路层
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-01T16:00:00.000Z" itemprop="datePublished">2017-05-02</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络/">计算机网络</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="物理层概念"><a href="#物理层概念" class="headerlink" title="物理层概念"></a>物理层概念</h1><p>物理层的主要任务是描述确定与传输媒体接口有关的一些特性：</p>
+<ul>
+<li><strong>机械特性</strong> 指明接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置等，平常所见的各种规格的接插件都有严格的标准化的规定</li>
+<li><strong>电气特性</strong> 指明在接口电缆的各条线上出现的电压范围</li>
+<li><strong>功能特性</strong> 指明某条线上出现的某一电平的电压表示何种意义</li>
+<li><strong>过程特性</strong> 指明对于不同功能的各种可能事件的出现顺序</li>
+</ul>
+<p>通信的目的是传送<code>消息</code>，如文本、图片、语音等，<code>数据</code>是消息的实体形式，而信号则是数据的电气或者电磁的表现形式。</p>
+<p>从通信的双方信息交互的方式来看，可以有三种基本方式。<code>单工通信</code>，比如广播电视等，<code>半双工</code>通信，比如战地通信的无线电和对讲机等，<code>全双工通信</code>，比如电话。</p>
+<p>来自信源的信号常称为<code>基带信号</code>，像计算机输出的代表文字图片的数据信号都属于基带信号。基带信号往往带有较多的低频成分，甚至有直流成分，而许多信道并不能传输这种低频分量或直流分量。为了解决这一问题，就必须对基带信号进行<code>调制</code>。</p>
+<p>调制可分为两大类：</p>
+<ul>
+<li><strong>基带调制</strong> 仅对基带信号的波形进行变换，使它能够与信道通特性相适应。变换后的信号仍然是基带信号。</li>
+<li><strong>带通调制</strong> 使用载波进行调制，把基带信号的频率范围搬移到较高的频段以便在信道中传输。经过载波调制后的信号称为带通信号(即仅在一段频率范围内能够通信信道)。</li>
+</ul>
+<p>最基本的带通调制方法有：</p>
+<ul>
+<li><strong>调幅(AM)</strong> 即载波的振幅随基带信号而变化，例如0或1对应于无载波或有载波输出</li>
+<li><strong>调频(FM)</strong> 即载波的频率随基带信号而变化，例如0或1对应于频率f1或f2</li>
+<li><strong>调相(PM)</strong> 即载波的初始相位随基带信号而变化，例如0或1对应于相位0度或180度</li>
+</ul>
+<p>传输媒介比如常说的网线、无线电波一类严格意义上不属于物理层。总之，物理层完成了计算机电气信号层面上的信息传输，传输单位为<code>比特流</code>。</p>
+<h1 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h1><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>所谓链路就是从一个结点到相邻节点的一段物理线路，而中间没有任何其他的交互结点。数据链路则是另一个概念，这是因为当需要在一条线路上传送数据时，除了必须有一条物理线路外，还必须有一些必要的通信协议来控制这些数据的传输，若把这些协议的硬件和软件加到链路上，就构成了数据链路。</p>
+<p>数据链路层把网络层交下来的分组数据封装成<code>帧</code>发送到链路上，以及把接收到的帧中的数据取出并上交给网络层。</p>
+<p>封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。发送端链路层在收到网络层的分组数据后，在其前后分别添加上首部和尾部构成帧。因此，帧长等于数据部分的长度加上帧首部和尾部的长度。链路层将数据封装成帧后交由物理层进行比特流传输。接收端链路层所做的正与发送端顺序相反，在收到物理层上交的比特流后，就能根据首部和尾部的标记，从收到的比特流中识别出帧的开始和结束。然后依据首尾部界定，分析提取出IP分组给到网络层。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#物理层概念"><span class="toc-number">1.</span> <span class="toc-text">物理层概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链路层"><span class="toc-number">2.</span> <span class="toc-text">链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">概念</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/05/02/2017-05-02-net2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&text=物理层和链路层"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&is_video=false&description=物理层和链路层"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=物理层和链路层&body=Check out this article: http://yoursite.com/2017/05/02/2017-05-02-net2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&title=物理层和链路层"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/05/02/2017-05-02-net2/&name=物理层和链路层&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wangjz1991';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

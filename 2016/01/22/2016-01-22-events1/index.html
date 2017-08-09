@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="javascript关于事件有很多内容可讲，像冒泡捕获这些老生常谈的概念这里就简单整理下，重点讲述zepto中event模块源码解析和自定义事件的实现思路等。限于篇幅，此篇只介绍事件的相关概念。 事件模型从DOM0到DOM3，每一级别的规范定义都是前者的完善和补充。我们先从DOM0开始。 DOM0DOM0事件模型，所有的浏览器都支持。 1.DOM0中注册事件形式如下： 1234567var btn">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件(一)-相关概念">
+<meta property="og:url" content="http://yoursite.com/2016/01/22/2016-01-22-events1/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="javascript关于事件有很多内容可讲，像冒泡捕获这些老生常谈的概念这里就简单整理下，重点讲述zepto中event模块源码解析和自定义事件的实现思路等。限于篇幅，此篇只介绍事件的相关概念。 事件模型从DOM0到DOM3，每一级别的规范定义都是前者的完善和补充。我们先从DOM0开始。 DOM0DOM0事件模型，所有的浏览器都支持。 1.DOM0中注册事件形式如下： 1234567var btn">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/2016-10-15events1/event_capture.jpg">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件(一)-相关概念">
+<meta name="twitter:description" content="javascript关于事件有很多内容可讲，像冒泡捕获这些老生常谈的概念这里就简单整理下，重点讲述zepto中event模块源码解析和自定义事件的实现思路等。限于篇幅，此篇只介绍事件的相关概念。 事件模型从DOM0到DOM3，每一级别的规范定义都是前者的完善和补充。我们先从DOM0开始。 DOM0DOM0事件模型，所有的浏览器都支持。 1.DOM0中注册事件形式如下： 1234567var btn">
+<meta name="twitter:image" content="http://ojd8i48oc.bkt.clouddn.com/2016-10-15events1/event_capture.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>事件(一)-相关概念</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/01/23/2016-01-23-events2/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/01/15/2016-01-15-progit/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/01/22/2016-01-22-events1/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&text=事件(一)-相关概念"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&is_video=false&description=事件(一)-相关概念"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(一)-相关概念&body=Check out this article: http://yoursite.com/2016/01/22/2016-01-22-events1/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&name=事件(一)-相关概念&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#事件模型"><span class="toc-number">1.</span> <span class="toc-text">事件模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM0"><span class="toc-number">1.1.</span> <span class="toc-text">DOM0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM2"><span class="toc-number">1.2.</span> <span class="toc-text">DOM2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获和冒泡"><span class="toc-number">1.2.1.</span> <span class="toc-text">捕获和冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定和解绑"><span class="toc-number">1.2.2.</span> <span class="toc-text">事件绑定和解绑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件代理"><span class="toc-number">1.2.3.</span> <span class="toc-text">事件代理</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        事件(一)-相关概念
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yeluo</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-01-21T16:00:00.000Z" itemprop="datePublished">2016-01-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>javascript关于事件有很多内容可讲，像冒泡捕获这些老生常谈的概念这里就简单整理下，重点讲述zepto中event模块源码解析和自定义事件的实现思路等。限于篇幅，此篇只介绍事件的相关概念。</p>
+<h1 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h1><p>从DOM0到DOM3，每一级别的规范定义都是前者的完善和补充。我们先从DOM0开始。</p>
+<h2 id="DOM0"><a href="#DOM0" class="headerlink" title="DOM0"></a>DOM0</h2><p>DOM0事件模型，所有的浏览器都支持。</p>
+<p>1.DOM0中注册事件形式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btnElm = <span class="built_in">document</span>.getElementById(<span class="string">"test"</span>);</div><div class="line">btnElm.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line"><span class="built_in">console</span>.log(e);</div><div class="line"><span class="built_in">console</span>.log(event);</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">arguments</span>[<span class="number">0</span>]);</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>事件被触发时，浏览器会默认传入一个参数event，表示事件对象。通过e，我们可以获取很多有用的信息，比如点击的坐标、具体触发该事件的dom元素等等。获取event对象的方法包括直接在事件函数内引用event变量(前提是event没有被显示声明过，不然就会被覆盖了)、取传参的第一个参数、或者取arguments的第一个元素。</li>
+<li>此种方式的事件绑定，处理函数中的this指向触发元素。</li>
+</ul>
+<p>2.还可以直接写在html标签属性里。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div id=<span class="string">'btn'</span> onclick=<span class="string">"print(event)"</span>&gt;<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>这种杂糅的代码你想看吗？所以尽量不要写这样的烂代码出来。这里是为了说明问题。</p>
+<ul>
+<li>这里获取event对象只能如上这样显示传参而且必须为event。</li>
+<li>此处的处理函数中的this指向全局对象</li>
+</ul>
+<p>3.解除绑定</p>
+<p>如上此种绑定方式遵循覆盖原则，即后边的函数表达式会覆盖之前的，你会发现最后有效的是最后的绑定。也限制了一个DOM节点不能同时绑定多个事件。</p>
+<p>因此，解除某个DOM节点的事件绑定就很好理解了。直接将事件句柄(handler)置为null即可。</p>
+<h2 id="DOM2"><a href="#DOM2" class="headerlink" title="DOM2"></a>DOM2</h2><p>不要问为什么不是DOM1，DOM1没定义不可以么？</p>
+<p>DOM1中仅仅是引入了单事件绑定，DOM2增加了多事件绑定和捕获冒泡概念等，通过addEventListener和removeEventListener管理。但是！但是！IE8及以下的IE版本都不支持这两个事件管理函数，而是自己搞出了对应的attachEvent和detachEvent，真的是哦，怕兼容性的坑还不够深。不过庆幸的是，IE9中这两个函数已经被弃用，IE11中直接去除，所以我们简单提下，兼容性代码在高级浏览器中可以不考虑。</p>
+<h3 id="捕获和冒泡"><a href="#捕获和冒泡" class="headerlink" title="捕获和冒泡"></a>捕获和冒泡</h3><blockquote>
+<p>事件触发过程：</p>
+</blockquote>
+<img src="http://ojd8i48oc.bkt.clouddn.com/2016-10-15events1/event_capture.jpg" class="[]" width="350">
+<p><strong>事件触发过程：</strong></p>
+<p>当我们在 DOM 树(发生在DOM节点的事件谈冒泡和捕获才有意义)的某个节点发生了一些操作（例如单击、鼠标移动上去），就会有一个事件发射过去。这个事件从 Window 发出，不断经过下级节点直到目标节点。在到达目标节点之前的过程，就是<code>捕获阶段</code>（Capture Phase）。</p>
+<p>所有经过的节点，都会触发这个事件。捕获阶段的任务就是建立这个事件传递路线，以便后面冒泡阶段顺着这条路线返回 Window。</p>
+<p>当事件跑啊跑，跑到了事件触发目标节点那里，最终在目标节点上触发这个事件，就是<code>目标阶段</code>（Target Phase）。</p>
+<p>当事件达到目标节点之后，就会沿着原路返回，由于这个过程类似水泡从底部浮到顶部，所以称作<code>冒泡阶段</code>（Bubbling Phase）。</p>
+<p>总结：所以针对每个DOM节点触发的事件都是从window(个人理解这里可以理解为根节点即可，所以更确切的说是document)开始，不断经过下级节点直到目标节点，然后再按照捕获阶段的路径原路返回。这就是整个的事件触发过程。</p>
+<p>addEventListener中的第三个参数为true则将事件设置为在捕获阶段发生，否则事件发生在冒泡阶段。</p>
+<p>还有一点就是IE他不支持事件捕获，你说气不气人。</p>
+<h3 id="事件绑定和解绑"><a href="#事件绑定和解绑" class="headerlink" title="事件绑定和解绑"></a>事件绑定和解绑</h3><p>addEventListener负责事件绑定，不过DOM2中支持多事件绑定，即同一个DOM节点通过addEventListener绑定的不同的事件可以同时存在不被覆盖，按照声明顺序先后执行。关于事件对象的获取和this的指向同DOM0。removeEventListener的用法比较苛刻，三个参数共通决定解除哪一个事件绑定，缺一不可。</p>
+<h3 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h3><p>事件代理是建立在事件冒泡机制上的，</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>假如有上面的五个li标签，如果不采取代理方式，要想同时监听他们的事件的话要分别在每个标签上都绑定事件。一个是性能，另一个是代码的冗余度。还好这里是五个，假如是50个，500个呢？不是要死人了。</p>
+<p>根据事件冒泡机制，我们可以在ul上绑定事件监听，当事件进行到冒泡阶段的时候，我们便可以监听到该事件的发生。这样只需要进行一个事件的绑定即可。</p>
+<p>使用事件代理主要有两个优势：</p>
+<ul>
+<li>减少事件绑定，提升性能。之前你需要绑定一堆子节点，而现在你只需要绑定一个父节点即可。减少了绑定事件监听函数的数量。</li>
+<li>动态变化的 DOM 结构，仍然可以监听。当一个 DOM 动态创建之后，不会带有任何事件监听，除非你重新执行事件监听函数，而使用事件代理无须担忧这个问题。</li>
+</ul>
+<p>DOM0和DOM2的事件绑定混合在一起用的话，各自遵循自己的规则，互不影响。整体上来说，依然是哪个先注册，哪个先执行，其他就没什么了。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#事件模型"><span class="toc-number">1.</span> <span class="toc-text">事件模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM0"><span class="toc-number">1.1.</span> <span class="toc-text">DOM0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM2"><span class="toc-number">1.2.</span> <span class="toc-text">DOM2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获和冒泡"><span class="toc-number">1.2.1.</span> <span class="toc-text">捕获和冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定和解绑"><span class="toc-number">1.2.2.</span> <span class="toc-text">事件绑定和解绑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件代理"><span class="toc-number">1.2.3.</span> <span class="toc-text">事件代理</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/01/22/2016-01-22-events1/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&text=事件(一)-相关概念"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&is_video=false&description=事件(一)-相关概念"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(一)-相关概念&body=Check out this article: http://yoursite.com/2016/01/22/2016-01-22-events1/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&title=事件(一)-相关概念"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/01/22/2016-01-22-events1/&name=事件(一)-相关概念&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-86660611-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'wangjz1991';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
