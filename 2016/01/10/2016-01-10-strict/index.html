@@ -56,11 +56,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </span>
@@ -173,7 +171,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"></div><div class="line"><span class="literal">false</span>.true = <span class="string">""</span>;              <span class="comment">//TypeError</span></div><div class="line">(<span class="number">14</span>).sailing = <span class="string">"home"</span>;        <span class="comment">//TypeError</span></div><div class="line"><span class="string">"with"</span>.you = <span class="string">"far away"</span>;      <span class="comment">//TypeError</span></div><div class="line"></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
 <h2 id="简化变量的使用"><a href="#简化变量的使用" class="headerlink" title="简化变量的使用"></a>简化变量的使用</h2><p>首先, 严格模式禁用 with。</p>
 <p>with 所引起的问题是块内的任何名称可以映射(map)到with传进来的对象的属性, 也可以映射到包围这个块的作用域内的变量(甚至是全局变量), 这一切都是在运行时决定的: 在代码运行之前是无法得知的. 严格模式下, 使用 with 会引起语法错误, 所以就不会存在 with 块内的变量在运行是才决定引用到哪里的情况了:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">var x = 17;</div><div class="line">with (obj) // !!! 语法错误</div><div class="line">&#123;</div><div class="line">  // 如果没有开启严格模式，with中的这个x会指向with上面的那个x，还是obj.x？</div><div class="line">  // 如果不运行代码，我们无法知道，因此，这种代码让引擎无法进行优化，速度也就会变慢。</div><div class="line">  x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"><span class="keyword">var</span> x = <span class="number">17</span>;</div><div class="line"><span class="keyword">with</span> (obj) <span class="comment">// !!! 语法错误</span></div><div class="line">&#123;</div><div class="line">  <span class="comment">// 如果没有开启严格模式，with中的这个x会指向with上面的那个x，还是obj.x？</span></div><div class="line">  <span class="comment">// 如果不运行代码，我们无法知道，因此，这种代码让引擎无法进行优化，速度也就会变慢。</span></div><div class="line">  x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>第二, 严格模式下的 eval 不再为上层范围(surrounding scope,注:包围eval代码块的范围)引入新变量. 在正常模式下,  代码 eval(“var x;”) 会给上层函数(surrounding function)或者全局引入一个新的变量 x . 这意味着, 一般情况下,  在一个包含 eval 调用的函数内所有没有引用到参数或者局部变量的名称都必须在运行时才能被映射到特定的定义 (因为 eval 可能引入的新变量会覆盖它的外层变量). 在严格模式下 eval 仅仅为被运行的代码创建变量, 所以 eval 不会使得名称映射到外部变量或者其他局部变量:</p>
 <p>第三, 严格模式禁止删除声明变量。delete name 在严格模式下会引起语法错误：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> x;</div><div class="line"><span class="keyword">delete</span> x; <span class="comment">// !!! 语法错误</span></div><div class="line"></div><div class="line"><span class="built_in">eval</span>(<span class="string">"var y; delete y;"</span>); <span class="comment">// !!! 语法错误</span></div></pre></td></tr></table></figure>
@@ -185,6 +183,12 @@
 
   </div>
 </article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
 
 
 
@@ -198,11 +202,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </div>
@@ -250,11 +252,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </nav>
@@ -280,10 +280,34 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-86660611-1', 'auto');
+        ga('create', 'UA-104402094-1', 'auto');
         ga('send', 'pageview');
     </script>
 
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
 <!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
 
 

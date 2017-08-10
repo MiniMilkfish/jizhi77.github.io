@@ -56,11 +56,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </span>
@@ -150,7 +148,7 @@
 </ul>
 <p>其实这个例子本身是为了用来说明多入口配置的，通过这个例子我们也可以很好的学习到如何配置多入口和通过 CommonsChunkPlugin 插件提取公共chunk。</p>
 <h2 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h2><p><strong>1. pageA.html</strong>:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/commons.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/pageA.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">true<span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">true<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">truetrue<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/commons.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">truetrue<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/pageA.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">true<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><strong>2. pageB.html</strong>:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/commons.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/pageB.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><strong>3. common.js</strong>:</p>
@@ -158,11 +156,11 @@
 <p><strong>4. shared.js</strong>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(msg);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p><strong>5. pageA.js</strong>:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> common = <span class="built_in">require</span>(<span class="string">'./common'</span>);</div><div class="line"><span class="built_in">require</span>([<span class="string">"./shared"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">shared</span>) </span>&#123;</div><div class="line">	shared(<span class="string">"This is page A"</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// Other code</span></div><div class="line">···</div><div class="line">···</div><div class="line">···</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> common = <span class="built_in">require</span>(<span class="string">'./common'</span>);</div><div class="line"><span class="built_in">require</span>([<span class="string">"./shared"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">shared</span>) </span>&#123;</div><div class="line">trueshared(<span class="string">"This is page A"</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// Other code</span></div><div class="line">···</div><div class="line">···</div><div class="line">···</div></pre></td></tr></table></figure>
 <p><strong>6. pageB.js</strong>:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> common = <span class="built_in">require</span>(<span class="string">"./common"</span>);</div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">"./shared"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> shared = <span class="built_in">require</span>(<span class="string">"./shared"</span>);</div><div class="line">	shared(<span class="string">"This is page B"</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// Other code</span></div><div class="line">···</div><div class="line">···</div><div class="line">···</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> common = <span class="built_in">require</span>(<span class="string">"./common"</span>);</div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">"./shared"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</div><div class="line">true<span class="keyword">var</span> shared = <span class="built_in">require</span>(<span class="string">"./shared"</span>);</div><div class="line">trueshared(<span class="string">"This is page B"</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// Other code</span></div><div class="line">···</div><div class="line">···</div><div class="line">···</div></pre></td></tr></table></figure>
 <p><strong>7. webpack.config.js</strong>:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">var</span> CommonsChunkPlugin = <span class="built_in">require</span>(<span class="string">"../../lib/optimize/CommonsChunkPlugin"</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	entry: &#123;</div><div class="line">		pageA: <span class="string">"./pageA"</span>,</div><div class="line">		pageB: <span class="string">"./pageB"</span></div><div class="line">	&#125;,</div><div class="line">	output: &#123;</div><div class="line">		path: path.join(__dirname, <span class="string">"js"</span>),</div><div class="line">		filename: <span class="string">"[name].bundle.js"</span>,</div><div class="line">		chunkFilename: <span class="string">"[id].chunk.js"</span></div><div class="line">	&#125;,</div><div class="line">	plugins: [</div><div class="line">		<span class="keyword">new</span> CommonsChunkPlugin(<span class="string">"commons"</span>) <span class="comment">// also use webpack.optimize object</span></div><div class="line">	]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">var</span> CommonsChunkPlugin = <span class="built_in">require</span>(<span class="string">"../../lib/optimize/CommonsChunkPlugin"</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">trueentry: &#123;</div><div class="line">truetruepageA: <span class="string">"./pageA"</span>,</div><div class="line">truetruepageB: <span class="string">"./pageB"</span></div><div class="line">true&#125;,</div><div class="line">trueoutput: &#123;</div><div class="line">truetruepath: path.join(__dirname, <span class="string">"js"</span>),</div><div class="line">truetruefilename: <span class="string">"[name].bundle.js"</span>,</div><div class="line">truetruechunkFilename: <span class="string">"[id].chunk.js"</span></div><div class="line">true&#125;,</div><div class="line">trueplugins: [</div><div class="line">truetrue<span class="keyword">new</span> CommonsChunkPlugin(<span class="string">"commons"</span>) <span class="comment">// also use webpack.optimize object</span></div><div class="line">true]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以上便是我们要分析的原始案例情景。</p>
 <ul>
 <li>两个页面需要独自打包构建，目的是模块拆分和减小资源体量。</li>
@@ -227,6 +225,12 @@
   </div>
 </article>
 
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
 
 
     </div>
@@ -239,11 +243,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </div>
@@ -291,11 +293,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </nav>
@@ -321,10 +321,34 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-86660611-1', 'auto');
+        ga('create', 'UA-104402094-1', 'auto');
         ga('send', 'pageview');
     </script>
 
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
 <!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
 
 

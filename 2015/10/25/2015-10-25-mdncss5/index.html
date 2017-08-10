@@ -56,11 +56,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </span>
@@ -157,7 +155,7 @@
 <blockquote>
 <p>这个屡试不爽，父子元素高度均无要求。</p>
 </blockquote>
-<h1 id="flex-弹性盒"><a href="#flex-弹性盒" class="headerlink" title="flex 弹性盒"></a>flex 弹性盒</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#wrap</span>&#123;</div><div class="line">	<span class="attribute">display</span>:flex;</div><div class="line">	<span class="attribute">justify-content</span>:center;</div><div class="line">	<span class="attribute">align-items</span>:center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="flex-弹性盒"><a href="#flex-弹性盒" class="headerlink" title="flex 弹性盒"></a>flex 弹性盒</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#wrap</span>&#123;</div><div class="line">true<span class="attribute">display</span>:flex;</div><div class="line">true<span class="attribute">justify-content</span>:center;</div><div class="line">true<span class="attribute">align-items</span>:center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>直接用 flex 布局即可。</p>
 <blockquote>
 <p>不全面，后续有好的方案再补充。</p>
@@ -165,6 +163,12 @@
 
   </div>
 </article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
 
 
 
@@ -178,11 +182,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </div>
@@ -230,11 +232,9 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="http://github.com/probberechts">Projects</a></li>
+          <li><a href="/about/">About</a></li>
         
       </ul>
     </nav>
@@ -260,10 +260,34 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-86660611-1', 'auto');
+        ga('create', 'UA-104402094-1', 'auto');
         ga('send', 'pageview');
     </script>
 
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
 <!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
 
 
