@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。 这一篇就接着异步应用的话题整理一下Generator函数的内容。 回调嵌套和Promise异步操作的回调嵌套写法： 123456789var fs = requir">
-<meta name="keywords" content="Generator,ES6">
+<meta name="keywords" content="ES6,Generator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Generator 函数的异步应用">
 <meta property="og:url" content="http://yoursite.com/posts/2017-05-21-generator/index.html">
@@ -56,7 +56,7 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Posts</a></li>
          
           <li><a href="/about/">About</a></li>
         
@@ -66,10 +66,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/posts/2017-05-20-promise/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/posts/hello-world/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/posts/2017-05-13-seajs/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/posts/2017-05-20-promise/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -200,7 +200,7 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Posts</a></li>
          
           <li><a href="/about/">About</a></li>
         
@@ -250,7 +250,7 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Posts</a></li>
          
           <li><a href="/about/">About</a></li>
         
