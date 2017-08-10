@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="异步编程众所周知javascript是单线程的，但实际应用中难免会出现异步逻辑。所谓异步逻辑就是代码执行到此处并不会立即得到结果，直观上往往需要等待一段时间。比如文件读取、ajax异步接口调用。 ES5对异步操作的处理局限于事件监听或异步回调。node的API均采用error-first的callback形式，因此出现了臭名昭著的回调地狱。通过层层嵌套的回调写法，实现异步操作的逻辑流程控制。目的虽">
-<meta name="keywords" content="Promise,ES6">
+<meta name="keywords" content="ES6,Promise">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise 的前因后果">
 <meta property="og:url" content="http://yoursite.com/posts/2017-05-20-promise/index.html">
@@ -68,10 +68,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/posts/2017-05-21-generator/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/posts/hello-world/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/posts/2017-05-13-seajs/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/posts/2017-05-21-generator/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
