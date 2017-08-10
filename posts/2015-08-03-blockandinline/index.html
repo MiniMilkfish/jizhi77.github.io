@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
+    <meta name="description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些、行内元素有哪些，然后重点了解行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 概念块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可">
 <meta name="keywords" content="HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="块状和行内元素">
 <meta property="og:url" content="http://yoursite.com/posts/2015-08-03-blockandinline/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
-<meta property="og:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
-<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
-<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
-<meta property="og:updated_time" content="2017-08-10T08:38:40.000Z">
+<meta property="og:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些、行内元素有哪些，然后重点了解行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 概念块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可">
+<meta property="og:image" content="http://yoursite.com/images/20150803/01.png">
+<meta property="og:image" content="http://yoursite.com/images/20150803/02.png">
+<meta property="og:updated_time" content="2017-08-10T12:21:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="块状和行内元素">
-<meta name="twitter:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 解释块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以">
-<meta name="twitter:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png">
+<meta name="twitter:description" content="对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些、行内元素有哪些，然后重点了解行内元素的padding和margin有哪些特殊的地方，基本上就可以了。 概念MDN总结 概念块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。 内容一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可">
+<meta name="twitter:image" content="http://yoursite.com/images/20150803/01.png">
     
     
         
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.0.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#个人总结"><span class="toc-number">1.0.2.</span> <span class="toc-text">个人总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">2.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">3.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">4.</span> <span class="toc-text">块级元素列表</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人总结"><span class="toc-number">1.2.</span> <span class="toc-text">个人总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">1.3.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">1.4.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">1.5.</span> <span class="toc-text">块级元素列表</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -138,17 +138,14 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些行内元素有哪些，然后重点知道行内元素的padding和margin有哪些特殊的地方，基本上就可以了。</p>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h4 id="MDN总结"><a href="#MDN总结" class="headerlink" title="MDN总结"></a>MDN总结</h4><ul>
-<li>解释<br>块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。</li>
+    <p>对于块状元素和行内元素，从概念上了解他们的异同，知道大体上块级元素有哪些、行内元素有哪些，然后重点了解行内元素的padding和margin有哪些特殊的地方，基本上就可以了。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="MDN总结"><a href="#MDN总结" class="headerlink" title="MDN总结"></a>MDN总结</h2><ul>
+<li>概念<br>块级元素占据其父元素（容器）的整个空间，默认宽度为父元素的100%，因此创建了一个“块”。一个行内元素只占据它对应标签的边框所包含的空间。</li>
 <li>内容<br>一般情况下，行内元素只能包含数据和其他行内元素。而块级元素可以包含行内元素和其他块级元素。这种结构上的包含继承区别可以使块级元素创建比行内元素更”大型“的结构。</li>
 <li>格式<br>默认情况下，行内元素不会以新行开始，而块级元素会新起一行</li>
 </ul>
-<blockquote>
-<p>以上是MDN里对块级和行内元素的几点说明。</p>
-</blockquote>
-<h4 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h4><ul>
-<li>总结<br>行内元素和块级元素的区别无非是在DOM结构渲染形式上所表现出来的不同而已。</li>
+<h2 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h2><p>行内元素和块级元素的区别无非是在DOM结构渲染形式上所表现出来的不同而已。</p>
+<ul>
 <li>行内元素<ul>
 <li>行内元素根据它对应标签所包含的内容<code>自适应宽度</code>，不多也不少，刚好够装下它所包含的内容。因此没有必要再提供处理宽高、边距属性的能力，所以行内元素的宽高属性是默认无效的，而且行内元素只要宽度足够就一直从左向右排列不会换新行。</li>
 <li>行内元素的padding属性可设置(left和right正常，但padding-top和padding-bottom会有异常效果，见下)，margin只有左右可设置，上下margin默认无效。(那些个ctrl+v党们请验证啊，不然误人又误己)。</li>
@@ -159,17 +156,17 @@
 </ul>
 </li>
 </ul>
-<h2 id="盒模型对比"><a href="#盒模型对比" class="headerlink" title="盒模型对比"></a>盒模型对比</h2><p>上面已经说过，行内元素设置宽高属性是无效的，这一点无需在讨论，重要的是行内元素的padding和margin属性的表现。先贴两张图说明问题。</p>
+<h2 id="盒模型对比"><a href="#盒模型对比" class="headerlink" title="盒模型对比"></a>盒模型对比</h2><p>上面已经说过，行内元素设置宽高属性是无效的，这一点无需再讨论，重要的是行内元素的padding和margin属性的表现。先贴两张图说明问题。</p>
 <ul>
-<li><p><strong>行内元素设置padding-bottom</strong></p>
-<img src="http://ojd8i48oc.bkt.clouddn.com/blog-%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png" width="450" title="行内元素设置padding-bottom">
-</li>
-<li><p><strong>块级元素设置padding-bottom</strong></p>
-<img src="http://ojd8i48oc.bkt.clouddn.com/blog-%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEpadding-bottom.png" width="450" title="块级元素设置padding-bottom">
-</li>
+<li>行内元素设置padding-bottom</li>
 </ul>
+<p><img src="../../images/20150803/01.png" alt="行内元素设置padding-bottom"></p>
+<ul>
+<li>块级元素设置padding-bottom</li>
+</ul>
+<p><img src="../../images/20150803/02.png" alt="行内元素设置padding-bottom"></p>
 <blockquote>
-<p><strong>划重点</strong>:总的来说，行内元素只有左右两个方向可以正常设置margin和padding属性，上下margin直接无效，而上下padding会出现如上图所示的异于块状元素的渲染方式。</p>
+<p>总的来说，行内元素只有左右两个方向可以正常设置margin和padding属性，上下margin直接无效，而上下padding会出现如上图所示的异于块状元素的渲染方式。</p>
 </blockquote>
 <h2 id="行内元素列表"><a href="#行内元素列表" class="headerlink" title="行内元素列表"></a>行内元素列表</h2><ul>
 <li>b, big, i, small, tt</li>
@@ -240,7 +237,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.0.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#个人总结"><span class="toc-number">1.0.2.</span> <span class="toc-text">个人总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">2.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">3.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">4.</span> <span class="toc-text">块级元素列表</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN总结"><span class="toc-number">1.1.</span> <span class="toc-text">MDN总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人总结"><span class="toc-number">1.2.</span> <span class="toc-text">个人总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盒模型对比"><span class="toc-number">1.3.</span> <span class="toc-text">盒模型对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行内元素列表"><span class="toc-number">1.4.</span> <span class="toc-text">行内元素列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素列表"><span class="toc-number">1.5.</span> <span class="toc-text">块级元素列表</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
