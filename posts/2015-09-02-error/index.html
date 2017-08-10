@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/2015-09-02-error/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="JavaScript中基本的错误处理对象Error，通过Error可以构造一个错误对象，当运行时错误产生时，Error的实例对象会被抛出。除了通用的Error构造函数外，JavaScript还有6个其他类型的错误构造函数：EvalError、RangeError、ReferenceError、SyntaxError、TypeError和URIError。 描述当代码运行时的发生错误，会创建新的Er">
-<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta property="og:updated_time" content="2017-08-10T15:49:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Error和错误处理">
 <meta name="twitter:description" content="JavaScript中基本的错误处理对象Error，通过Error可以构造一个错误对象，当运行时错误产生时，Error的实例对象会被抛出。除了通用的Error构造函数外，JavaScript还有6个其他类型的错误构造函数：EvalError、RangeError、ReferenceError、SyntaxError、TypeError和URIError。 描述当代码运行时的发生错误，会创建新的Er">
@@ -71,7 +71,7 @@
         <li><a class="icon" href="/posts/2015-09-10-scope/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
         
         
-        <li><a class="icon" href="/posts/20150822_clearfix/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/posts/2015-08-22-clearfix/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
         <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#抛出一个基本错误"><span class="toc-number">2.1.</span> <span class="toc-text">抛出一个基本错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理一个特定错误"><span class="toc-number">2.2.</span> <span class="toc-text">处理一个特定错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义异常类型"><span class="toc-number">2.3.</span> <span class="toc-text">自定义异常类型</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#抛出一个基本错误"><span class="toc-number">2.1.</span> <span class="toc-text">抛出一个基本错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理一个特定错误"><span class="toc-number">2.2.</span> <span class="toc-text">处理一个特定错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义异常类型"><span class="toc-number">2.3.</span> <span class="toc-text">自定义异常类型</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -117,7 +117,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Hi, You Bad Boy</span>
+        <span itemprop="name">jizhi.w77@foxmail.com</span>
       </span>
       
     <div class="postdate">
@@ -138,12 +138,12 @@
 
   <div class="content" itemprop="articleBody">
     <p>JavaScript中基本的错误处理对象Error，通过Error可以构造一个错误对象，当运行时错误产生时，Error的实例对象会被抛出。除了通用的Error构造函数外，JavaScript还有6个其他类型的错误构造函数：<code>EvalError</code>、<code>RangeError</code>、<code>ReferenceError</code>、<code>SyntaxError</code>、<code>TypeError</code>和<code>URIError</code>。</p>
-<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>当代码运行时的发生错误，会创建新的Error对象，并将其抛出。</p>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h2 id="抛出一个基本错误"><a href="#抛出一个基本错误" class="headerlink" title="抛出一个基本错误"></a>抛出一个基本错误</h2><p>通常你会使用throw关键字来抛出你创建的Error对象。可以使用 try…catch 结构来处理异常:</p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>当代码运行时的发生错误，会创建新的Error对象，并将其抛出。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="抛出一个基本错误"><a href="#抛出一个基本错误" class="headerlink" title="抛出一个基本错误"></a>抛出一个基本错误</h3><p>通常你会使用throw关键字来抛出你创建的Error对象。可以使用 try…catch 结构来处理异常:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Whoops!"</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    alert(e.name + <span class="string">": "</span> + e.message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="处理一个特定错误"><a href="#处理一个特定错误" class="headerlink" title="处理一个特定错误"></a>处理一个特定错误</h2><p>可以通过判断异常的类型来特定处理某一类的异常,即判断 constructor 属性，当使用现代Javascript引擎时,可使用instanceof 关键字：</p>
+<h3 id="处理一个特定错误"><a href="#处理一个特定错误" class="headerlink" title="处理一个特定错误"></a>处理一个特定错误</h3><p>可以通过判断异常的类型来特定处理某一类的异常,即判断 constructor 属性，当使用现代Javascript引擎时,可使用instanceof 关键字：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">    foo.bar();</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">if</span> (e <span class="keyword">instanceof</span> <span class="built_in">EvalError</span>) &#123;</div><div class="line">        alert(e.name + <span class="string">": "</span> + e.message);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> <span class="built_in">RangeError</span>) &#123;</div><div class="line">        alert(e.name + <span class="string">": "</span> + e.message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ... etc</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="自定义异常类型"><a href="#自定义异常类型" class="headerlink" title="自定义异常类型"></a>自定义异常类型</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create a new object, that prototypally inherits from the Error constructor.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyError</span>(<span class="params">message</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'MyError'</span>;</div><div class="line">  <span class="keyword">this</span>.message = message || <span class="string">'Default Message'</span>;   <span class="keyword">this</span>.stack = (<span class="keyword">new</span> <span class="built_in">Error</span>()).stack;</div><div class="line">&#125;</div><div class="line">MyError.prototype = <span class="built_in">Object</span>.create(<span class="built_in">Error</span>.prototype);</div><div class="line">MyError.prototype.constructor = MyError;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> MyError();</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">console</span>.log(e.name);     <span class="comment">// 'MyError'</span></div><div class="line">  <span class="built_in">console</span>.log(e.message);  <span class="comment">// 'Default Message'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> MyError(<span class="string">'custom message'</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">console</span>.log(e.name);     <span class="comment">// 'MyError'</span></div><div class="line">  <span class="built_in">console</span>.log(e.message);  <span class="comment">// 'custom message'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="自定义异常类型"><a href="#自定义异常类型" class="headerlink" title="自定义异常类型"></a>自定义异常类型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create a new object, that prototypally inherits from the Error constructor.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyError</span>(<span class="params">message</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'MyError'</span>;</div><div class="line">  <span class="keyword">this</span>.message = message || <span class="string">'Default Message'</span>;   <span class="keyword">this</span>.stack = (<span class="keyword">new</span> <span class="built_in">Error</span>()).stack;</div><div class="line">&#125;</div><div class="line">MyError.prototype = <span class="built_in">Object</span>.create(<span class="built_in">Error</span>.prototype);</div><div class="line">MyError.prototype.constructor = MyError;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> MyError();</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">console</span>.log(e.name);     <span class="comment">// 'MyError'</span></div><div class="line">  <span class="built_in">console</span>.log(e.message);  <span class="comment">// 'Default Message'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> MyError(<span class="string">'custom message'</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">  <span class="built_in">console</span>.log(e.name);     <span class="comment">// 'MyError'</span></div><div class="line">  <span class="built_in">console</span>.log(e.message);  <span class="comment">// 'custom message'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
   </div>
 </article>
 
@@ -175,7 +175,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#抛出一个基本错误"><span class="toc-number">2.1.</span> <span class="toc-text">抛出一个基本错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理一个特定错误"><span class="toc-number">2.2.</span> <span class="toc-text">处理一个特定错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义异常类型"><span class="toc-number">2.3.</span> <span class="toc-text">自定义异常类型</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">1.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#抛出一个基本错误"><span class="toc-number">2.1.</span> <span class="toc-text">抛出一个基本错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理一个特定错误"><span class="toc-number">2.2.</span> <span class="toc-text">处理一个特定错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义异常类型"><span class="toc-number">2.3.</span> <span class="toc-text">自定义异常类型</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -233,21 +233,10 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<!--imagelightbox-->
-<link rel="stylesheet" href="/lib/imagelightbox/imagelightbox.min.css">
+
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/js/main.js"></script>
-<!--zoomimage-->
-<script src="/lib/imagelightbox/imagelightbox.min.js"></script>
-<!--zoomimage-->
-<script>
-    $( function()
-    {
-        $('p img').imageLightbox({overlay:true});
-    });
-    $('img').imageLightbox({overlay:true});
-</script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">

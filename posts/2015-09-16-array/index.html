@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/2015-09-16-array/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="JavaScript 数组对象(Array)是一个用于构造数组的全局对象; 它是高级的、列表式的对象。 语法123[element0, element1, ..., elementN]new Array(element0, element1[, ...[, elementN]])new Array(arrayLength)  字面量[]内包含任意数据类型。 元素列 —— elementNArray">
-<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta property="og:updated_time" content="2017-08-10T15:56:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 数组对象">
 <meta name="twitter:description" content="JavaScript 数组对象(Array)是一个用于构造数组的全局对象; 它是高级的、列表式的对象。 语法123[element0, element1, ..., elementN]new Array(element0, element1[, ...[, elementN]])new Array(arrayLength)  字面量[]内包含任意数据类型。 元素列 —— elementNArray">
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组长度"><span class="toc-number">3.</span> <span class="toc-text">数组长度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-构造器属性"><span class="toc-number">4.</span> <span class="toc-text">Array 构造器属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-构造器方法"><span class="toc-number">5.</span> <span class="toc-text">Array 构造器方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-原型方法"><span class="toc-number">6.</span> <span class="toc-text">Array 原型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutator-方法"><span class="toc-number">6.1.</span> <span class="toc-text">Mutator 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessor-方法"><span class="toc-number">6.2.</span> <span class="toc-text">Accessor 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration-方法"><span class="toc-number">6.3.</span> <span class="toc-text">Iteration 方法</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组长度"><span class="toc-number">3.</span> <span class="toc-text">数组长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-构造器属性"><span class="toc-number">4.</span> <span class="toc-text">Array 构造器属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-构造器方法"><span class="toc-number">5.</span> <span class="toc-text">Array 构造器方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-原型方法"><span class="toc-number">6.</span> <span class="toc-text">Array 原型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutator-方法"><span class="toc-number">6.1.</span> <span class="toc-text">Mutator 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accessor-方法"><span class="toc-number">6.2.</span> <span class="toc-text">Accessor 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iteration-方法"><span class="toc-number">6.3.</span> <span class="toc-text">Iteration 方法</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -138,13 +138,13 @@
 
   <div class="content" itemprop="articleBody">
     <p>JavaScript 数组对象(Array)是一个用于构造数组的全局对象; 它是高级的、列表式的对象。</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[element0, element1, ..., elementN]</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(element0, element1[, ...[, elementN]])</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(arrayLength)</div></pre></td></tr></table></figure>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[element0, element1, ..., elementN]</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(element0, element1[, ...[, elementN]])</div><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(arrayLength)</div></pre></td></tr></table></figure>
 <ul>
 <li><strong>字面量</strong><br><code>[]</code>内包含任意数据类型。</li>
 <li><strong>元素列 —— elementN</strong><br>Array 构造器将会根据给出的元素创建一个 JavaScript 数组，但是当参数仅有一个参数且其为数字时除外，参考下面的 arrayLength。值得注意的是，这种情况仅在使用 Array 构造器时出现，使用带方括号的数组字面量则不会。</li>
 <li><strong>数组长度 —— arrayLength</strong><br>向 Array 构造函数传入一个<code>在 0 到 2^32-1 之间</code>的整数，将返回一个以此为长度的数组对象。通过 length 属性可以访问这个值。如果传入的参数不是有效的数值，则抛出 <code>RangeError</code> 异常。</li>
 </ul>
-<h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><ol>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><ol>
 <li><p>数组是类似列表的对象，在原型中提供了遍历以及改变其中元素的很多方法。 数组的长度及其中元素的类型都是不固定的。因为数组的长度可读可写，有时数组中的元素也不是在连续的位置，所以JavaScript 数组不一定是密集的。</p>
 </li>
 <li><p>数组中的元素像一个对象以索引为属性名,元素为属性值，或者arr=[‘a’,’b’]有点像arrObj={0:’a’,1:’b’},一个对象的属性是可以通过”.”来访问,但是使用下面这样使用会抛出语法错误，因为属性名称是非法的：</p>
@@ -159,19 +159,19 @@
 <p>在3d的例子中，’3d’的引号是必须的。该方法也可以用在 JavaScript 数组中（如：years[‘2’] 可以代替 years[2]），不过这不是必需的。在 years[2] 中，2会被Javascript 引擎自动调用 toString 转换成一个 string 类型的变量。正因为如此，’2’ 和 ‘02’ 在years 对象中将会指向不同的位置，下面这个例子将会打印 true：</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(years[<span class="string">'2'</span>] != years[<span class="string">'02'</span>]);</div></pre></td></tr></table></figure>
-<h1 id="数组长度"><a href="#数组长度" class="headerlink" title="数组长度"></a>数组长度</h1><p>1.数组长度值范围介于<code>在 0 到 2^32-1 即 0 - 4294967295 之间</code>。当尝试以一个在此范围外的数值作为长度声明数组的时候，则抛出 <code>RangeError</code> 异常。</p>
+<h2 id="数组长度"><a href="#数组长度" class="headerlink" title="数组长度"></a>数组长度</h2><p>1.数组长度值范围介于<code>在 0 到 2^32-1 即 0 - 4294967295 之间</code>。当尝试以一个在此范围外的数值作为长度声明数组的时候，则抛出 <code>RangeError</code> 异常。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">-1</span>); <span class="comment">// Uncaught RangeError: Invalid array length</span></div><div class="line"><span class="keyword">var</span> array2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="built_in">Math</span>.pow(<span class="number">2</span>,<span class="number">32</span>)); <span class="comment">// Uncaught RangeError: Invalid array length</span></div><div class="line"></div><div class="line">当一个数组长度已经濒临越界，此时再<span class="string">`push`</span>的话不会报错，但是会覆盖最后一个值。</div><div class="line"></div><div class="line"><span class="string">``</span><span class="string">`js</span></div><div class="line"><span class="string">var array = new Array(Math.pow(2,32)-1);</span></div><div class="line"><span class="string">array[array.length-1] = 1;</span></div><div class="line"><span class="string">array[array.length] = 2; // array =&gt; [undefined × 4294967294, 1, 4294967295: 2]</span></div></pre></td></tr></table></figure>
 <p>2.当你在 array 上使用一个合法的数组下标，而且该下标超出了当前数组的大小的时候，引擎会根据其值自动更新 array 的length属性，减小 array 的length属性会删掉超出的元素。</p>
-<h1 id="Array-构造器属性"><a href="#Array-构造器属性" class="headerlink" title="Array 构造器属性"></a>Array 构造器属性</h1><ul>
+<h2 id="Array-构造器属性"><a href="#Array-构造器属性" class="headerlink" title="Array 构造器属性"></a>Array 构造器属性</h2><ul>
 <li>Array.length<br>Array 构造函数的 length 属性，其值为1。</li>
 <li>Array.prototype<br>允许为所有数组对象附加属性。</li>
 </ul>
-<h1 id="Array-构造器方法"><a href="#Array-构造器方法" class="headerlink" title="Array 构造器方法"></a>Array 构造器方法</h1><ul>
+<h2 id="Array-构造器方法"><a href="#Array-构造器方法" class="headerlink" title="Array 构造器方法"></a>Array 构造器方法</h2><ul>
 <li>Array.from()<br>从类数组或者迭代对象（iterable object）中创建一个新的数组实例。</li>
 <li>Array.isArray()<br>假如一个变量是数组则返回true，否则返回false。</li>
 </ul>
-<h1 id="Array-原型方法"><a href="#Array-原型方法" class="headerlink" title="Array 原型方法"></a>Array 原型方法</h1><p>所有数组实例继承自 Array.prototype。</p>
-<h2 id="Mutator-方法"><a href="#Mutator-方法" class="headerlink" title="Mutator 方法"></a>Mutator 方法</h2><p>下面的这些方法会改变调用它们的对象自身的值：</p>
+<h2 id="Array-原型方法"><a href="#Array-原型方法" class="headerlink" title="Array 原型方法"></a>Array 原型方法</h2><p>所有数组实例继承自 Array.prototype。</p>
+<h3 id="Mutator-方法"><a href="#Mutator-方法" class="headerlink" title="Mutator 方法"></a>Mutator 方法</h3><p>下面的这些方法会改变调用它们的对象自身的值：</p>
 <ul>
 <li>Array.prototype.copyWithin()<br>在数组内部，将一段元素序列拷贝到另一段元素序列上，覆盖原有的值。</li>
 <li>Array.prototype.fill()<br>将数组中指定区间的所有元素的值，都替换成某个固定的值。</li>
@@ -182,7 +182,7 @@
 <li>Array.prototype.sort()<br>对数组元素进行排序，并返回当前数组。<br>Array.prototype.splice()<br>在任意的位置给数组添加或删除任意个元素。</li>
 <li>Array.prototype.unshift()<br>在数组的开头增加一个或多个元素，并返回数组的新长度。</li>
 </ul>
-<h2 id="Accessor-方法"><a href="#Accessor-方法" class="headerlink" title="Accessor 方法"></a>Accessor 方法</h2><p>下面的这些方法绝对不会改变调用它们的对象的值，只会返回一个新的数组或者返回一个其它的期望值。</p>
+<h3 id="Accessor-方法"><a href="#Accessor-方法" class="headerlink" title="Accessor 方法"></a>Accessor 方法</h3><p>下面的这些方法绝对不会改变调用它们的对象的值，只会返回一个新的数组或者返回一个其它的期望值。</p>
 <ul>
 <li>Array.prototype.concat()<br>返回一个由当前数组和其它若干个数组或者若干个非数组值组合而成的新数组。</li>
 <li>Array.prototype.includes()<br>判断当前数组是否包含某指定的值，如果是返回 true，否则返回 false。</li>
@@ -194,7 +194,7 @@
 <li>Array.prototype.indexOf()<br>返回数组中第一个与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1。</li>
 <li>Array.prototype.lastIndexOf()<br>返回数组中最后一个（从右边数第一个）与指定值相等的元素的索引，如果找不到这样的元素，则返回 -1。</li>
 </ul>
-<h2 id="Iteration-方法"><a href="#Iteration-方法" class="headerlink" title="Iteration 方法"></a>Iteration 方法</h2><p>在下面的众多遍历方法中，有很多方法都需要指定一个回调函数作为参数。在回调函数执行之前，数组的长度会被缓存在某个地方，所以，如果你在回调函数中为当前数组添加了新的元素，那么那些新添加的元素是不会被遍历到的。此外，如果在回调函数中对当前数组进行了其它修改，比如改变某个元素的值或者删掉某个元素，那么随后的遍历操作可能会受到未预期的影响。总之，不要尝试在遍历过程中对原数组进行任何修改，虽然规范对这样的操作进行了详细的定义，但为了可读性和可维护性，请不要这样做。</p>
+<h3 id="Iteration-方法"><a href="#Iteration-方法" class="headerlink" title="Iteration 方法"></a>Iteration 方法</h3><p>在下面的众多遍历方法中，有很多方法都需要指定一个回调函数作为参数。在回调函数执行之前，数组的长度会被缓存在某个地方，所以，如果你在回调函数中为当前数组添加了新的元素，那么那些新添加的元素是不会被遍历到的。此外，如果在回调函数中对当前数组进行了其它修改，比如改变某个元素的值或者删掉某个元素，那么随后的遍历操作可能会受到未预期的影响。总之，不要尝试在遍历过程中对原数组进行任何修改，虽然规范对这样的操作进行了详细的定义，但为了可读性和可维护性，请不要这样做。</p>
 <ul>
 <li>Array.prototype.forEach()<br>为数组中的每个元素执行一次回调函数。</li>
 <li>Array.prototype.entries()<br>返回一个数组迭代器对象，该迭代器会包含所有数组元素的键值对。</li>
@@ -245,7 +245,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数组长度"><span class="toc-number">3.</span> <span class="toc-text">数组长度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-构造器属性"><span class="toc-number">4.</span> <span class="toc-text">Array 构造器属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-构造器方法"><span class="toc-number">5.</span> <span class="toc-text">Array 构造器方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-原型方法"><span class="toc-number">6.</span> <span class="toc-text">Array 原型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutator-方法"><span class="toc-number">6.1.</span> <span class="toc-text">Mutator 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Accessor-方法"><span class="toc-number">6.2.</span> <span class="toc-text">Accessor 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iteration-方法"><span class="toc-number">6.3.</span> <span class="toc-text">Iteration 方法</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组长度"><span class="toc-number">3.</span> <span class="toc-text">数组长度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-构造器属性"><span class="toc-number">4.</span> <span class="toc-text">Array 构造器属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-构造器方法"><span class="toc-number">5.</span> <span class="toc-text">Array 构造器方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-原型方法"><span class="toc-number">6.</span> <span class="toc-text">Array 原型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutator-方法"><span class="toc-number">6.1.</span> <span class="toc-text">Mutator 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accessor-方法"><span class="toc-number">6.2.</span> <span class="toc-text">Accessor 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iteration-方法"><span class="toc-number">6.3.</span> <span class="toc-text">Iteration 方法</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -303,21 +303,10 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<!--imagelightbox-->
-<link rel="stylesheet" href="/lib/imagelightbox/imagelightbox.min.css">
+
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/js/main.js"></script>
-<!--zoomimage-->
-<script src="/lib/imagelightbox/imagelightbox.min.js"></script>
-<!--zoomimage-->
-<script>
-    $( function()
-    {
-        $('p img').imageLightbox({overlay:true});
-    });
-    $('img').imageLightbox({overlay:true});
-</script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">

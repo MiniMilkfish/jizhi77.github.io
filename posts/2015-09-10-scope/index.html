@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/2015-09-10-scope/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="本文整理自《你不知道的JavaScript》一书。 几乎所有编程语言最基本的功能之一，就是能够储存变量当中的值，并且能在之后对这个值进行访问或修改。事实上，正是这种储存和访问变量的值的能力将状态带给了程序。 但是将变量引入程序会引起几个很有意思的问题，这些变量住在哪里？换句话说，它们储存在哪里？最重要的是，程序需要时如何找到它们？ 这些问题说明需要一套设计良好的规则来存储变量，并且之后可以方便地找">
-<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta property="og:updated_time" content="2017-08-10T15:51:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript的作用域">
 <meta name="twitter:description" content="本文整理自《你不知道的JavaScript》一书。 几乎所有编程语言最基本的功能之一，就是能够储存变量当中的值，并且能在之后对这个值进行访问或修改。事实上，正是这种储存和访问变量的值的能力将状态带给了程序。 但是将变量引入程序会引起几个很有意思的问题，这些变量住在哪里？换句话说，它们储存在哪里？最重要的是，程序需要时如何找到它们？ 这些问题说明需要一套设计良好的规则来存储变量，并且之后可以方便地找">
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编译原理"><span class="toc-number">1.</span> <span class="toc-text">编译原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#词法分析"><span class="toc-number">1.1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法分析"><span class="toc-number">1.2.</span> <span class="toc-text">语法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码生成"><span class="toc-number">1.3.</span> <span class="toc-text">代码生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var-count-1-的编译过程"><span class="toc-number">1.4.</span> <span class="toc-text">var count = 1 的编译过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数作用域"><span class="toc-number">2.</span> <span class="toc-text">函数作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">3.</span> <span class="toc-text">作用域嵌套</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量提升"><span class="toc-number">4.</span> <span class="toc-text">变量提升</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译原理"><span class="toc-number">1.</span> <span class="toc-text">编译原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#词法分析"><span class="toc-number">1.1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法分析"><span class="toc-number">1.2.</span> <span class="toc-text">语法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码生成"><span class="toc-number">1.3.</span> <span class="toc-text">代码生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var-count-1-的编译过程"><span class="toc-number">1.4.</span> <span class="toc-text">var count = 1 的编译过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作用域"><span class="toc-number">2.</span> <span class="toc-text">函数作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">3.</span> <span class="toc-text">作用域嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量提升"><span class="toc-number">4.</span> <span class="toc-text">变量提升</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -142,26 +142,26 @@
 <p>但是将变量引入程序会引起几个很有意思的问题，这些变量住在哪里？换句话说，它们储存在哪里？最重要的是，程序需要时如何找到它们？</p>
 <p>这些问题说明需要一套设计良好的规则来存储变量，并且之后可以方便地找到这些变量。</p>
 <p>这套规则被称为作用域。</p>
-<h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><p>学过编译原理的同学都知道，我们所写的代码在执行前都要经过几道编译过程才能生成最终计算机真正能读懂的语句。</p>
+<h2 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h2><p>学过编译原理的同学都知道，我们所写的代码在执行前都要经过几道编译过程才能生成最终计算机真正能读懂的语句。</p>
 <p>我们所写的代码都是人类友好型的，是我们人类的语言加了一些特定规则产出的事物。但是计算机底层只认识0和1这两个与电信号相关的信息，所以任何一类语言的编译器所做的工作无非就是将我们人类所写的人类语言代码转换为机器语言代码，这整个过程就可以理解为编译。</p>
 <p>虽然大部分时候我们都将javascript理解为解释执行式语言，但这并不说明浏览器在将代码拿到后就可以直接运行并生成我们所想要的结果，总归要有个编译的过程，而且这个过程和其他语言类似C++、Java等的编译过程非常相似，只不过形式上是编译完某部分后立马执行，而不像其他语言需要整体编译完并生成一些中间代码后才能获得最终真正执行的程序。</p>
-<h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2><p>编译的第一步就是拆分人类语言代码，将代码字符串(对编译器来说我们写的代码就是一长串的字符串)拆分成一些有意义的代码块，为下一步继续后边的工作做准备，这些有意义的代码块被称为词法单元。</p>
+<h3 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h3><p>编译的第一步就是拆分人类语言代码，将代码字符串(对编译器来说我们写的代码就是一长串的字符串)拆分成一些有意义的代码块，为下一步继续后边的工作做准备，这些有意义的代码块被称为词法单元。</p>
 <p>eg:<code>var count = 1;</code> 会被拆分成var、count、=、2；</p>
-<h2 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h2><p>经过词法分析后生成的词法单元形成了一个词法单元流，语法分析的目的就是将词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表了程序语法结构的树。当然这个转换是要基于一定的规则的。</p>
-<h2 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h2><p>其实中间还有很多步骤要走，主要是对语法树的进一步分析，可分为自顶向下和自底向上两种方式。然后是语义分析，主要是属性文法和属性计算。</p>
+<h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>经过词法分析后生成的词法单元形成了一个词法单元流，语法分析的目的就是将词法单元流（数组）转换成一个由元素逐级嵌套所组成的代表了程序语法结构的树。当然这个转换是要基于一定的规则的。</p>
+<h3 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h3><p>其实中间还有很多步骤要走，主要是对语法树的进一步分析，可分为自顶向下和自底向上两种方式。然后是语义分析，主要是属性文法和属性计算。</p>
 <p>我们不深究细节，直接到了代码生成步骤，代码生成的目的就是将由前几部所得的结果转换为最终计算机可以理解并执行的语言，也就是一些二进制语言。</p>
 <p>如上，便是编译原理的一些基础知识。</p>
-<h2 id="var-count-1-的编译过程"><a href="#var-count-1-的编译过程" class="headerlink" title="var count = 1 的编译过程"></a>var count = 1 的编译过程</h2><p>还是接着上边的例子，对于<code>var count = 1</code>这条语句，我们直观上理解编译器分为两个步骤处理，一个是声明、一个是赋值。</p>
+<h3 id="var-count-1-的编译过程"><a href="#var-count-1-的编译过程" class="headerlink" title="var count = 1 的编译过程"></a>var count = 1 的编译过程</h3><p>还是接着上边的例子，对于<code>var count = 1</code>这条语句，我们直观上理解编译器分为两个步骤处理，一个是声明、一个是赋值。</p>
 <p>首先，遇到var count，编译器会询问作用域是否已经有一个该名称的变量存在于同一个作用域的集合中。如果是，编译器会忽略该声明，继续进行编译；否则它会要求作用域在当前作用域的集合中声明一个新的变量，并命名为count。</p>
 <p>接着，编译器会为引擎生成运行时所需的代码，这些代码被用来处理count = 1 这个赋值操作。引擎运行时会首先询问作用域，在当前的作用域集合中是否存在一个叫作count的变量。如果是，引擎就会使用这个变量；如果否，引擎会继续查找该变量,如果最终找到了这个count，便将 1 赋值给他，否则抛出异常。</p>
-<h1 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h1><p>函数作用域的含义是指，属于这个函数的全部变量都可以在整个函数的范围内使用及复用（事实上在嵌套的作用域中也可以使用）。</p>
+<h2 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h2><p>函数作用域的含义是指，属于这个函数的全部变量都可以在整个函数的范围内使用及复用（事实上在嵌套的作用域中也可以使用）。</p>
 <p>eg:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> b = a * <span class="number">2</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log( a, b, c );</div><div class="line">    &#125;</div><div class="line">    bar( b * <span class="number">3</span> );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( <span class="number">2</span> ); <span class="comment">// 2, 4, 12</span></div></pre></td></tr></table></figure>
 <p>上边一段代码从最里层的bar函数作用域开始追溯。首先bar本身内部变量c在bar的作用域内是可以被使用的，因为bar被嵌套在foo函数作用域和全局作用域中，所以他又可以访问foo和全局作用域中的变量b、a、foo。同理foo中可以访问自身变量a、bar和全局作用域foo。最外层全局作用域只能访问foo。</p>
 <p>当然，ES6中又引入了let关键字，他的作用就是引进块作用域的概念。let的作用跟var差不多，但是他有一个特别的地方就是可以将变量作用域固定到当前所属的块状代码结构当中，这个块状一般指’{}’花括号括起来的整个区域。</p>
-<h1 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h1><p>我们说过，作用域是根据名称查找变量的一套规则。实际情况中，通常需要同时顾及几个作用域。</p>
+<h2 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h2><p>我们说过，作用域是根据名称查找变量的一套规则。实际情况中，通常需要同时顾及几个作用域。</p>
 <p>当一个块或函数嵌套在另一个块或函数中时，就发生了作用域的嵌套。因此，在当前作用域中无法找到某个变量时，引擎就会在外层嵌套的作用域中继续查找，直到找到该变量，或抵达最外层的作用域（也就是全局作用域）为止。总是从当前作用域逐级向外层寻找，找到便停止，否则直到全局作用域。如果全局作用域也不存在，则抛出异常。这个就是作用域链的大体概念。</p>
-<h1 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h1><p>我们直觉上会认为JavaScript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确。</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>我们直觉上会认为JavaScript代码在执行时是由上到下一行一行执行的。但实际上这并不完全正确。</p>
 <p>如果我们在还未声明一个变量之前就使用该变量，那么结果会是怎样的呢？</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a) ;</div><div class="line"><span class="keyword">var</span> a ;</div></pre></td></tr></table></figure>
 <p>按照直觉来看肯定会报变量a未定义的错误，但是结果却是输出undefined，也就是变量a已存在只是未赋值而已的状态。</p>
@@ -204,7 +204,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编译原理"><span class="toc-number">1.</span> <span class="toc-text">编译原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#词法分析"><span class="toc-number">1.1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法分析"><span class="toc-number">1.2.</span> <span class="toc-text">语法分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码生成"><span class="toc-number">1.3.</span> <span class="toc-text">代码生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var-count-1-的编译过程"><span class="toc-number">1.4.</span> <span class="toc-text">var count = 1 的编译过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数作用域"><span class="toc-number">2.</span> <span class="toc-text">函数作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">3.</span> <span class="toc-text">作用域嵌套</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量提升"><span class="toc-number">4.</span> <span class="toc-text">变量提升</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译原理"><span class="toc-number">1.</span> <span class="toc-text">编译原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#词法分析"><span class="toc-number">1.1.</span> <span class="toc-text">词法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法分析"><span class="toc-number">1.2.</span> <span class="toc-text">语法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码生成"><span class="toc-number">1.3.</span> <span class="toc-text">代码生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var-count-1-的编译过程"><span class="toc-number">1.4.</span> <span class="toc-text">var count = 1 的编译过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作用域"><span class="toc-number">2.</span> <span class="toc-text">函数作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">3.</span> <span class="toc-text">作用域嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量提升"><span class="toc-number">4.</span> <span class="toc-text">变量提升</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -262,21 +262,10 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<!--imagelightbox-->
-<link rel="stylesheet" href="/lib/imagelightbox/imagelightbox.min.css">
+
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/js/main.js"></script>
-<!--zoomimage-->
-<script src="/lib/imagelightbox/imagelightbox.min.js"></script>
-<!--zoomimage-->
-<script>
-    $( function()
-    {
-        $('p img').imageLightbox({overlay:true});
-    });
-    $('img').imageLightbox({overlay:true});
-</script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">

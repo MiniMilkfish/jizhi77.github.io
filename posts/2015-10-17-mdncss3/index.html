@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/2015-10-17-mdncss3/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="继承查看MDN文档或者其他的CSS手册的时候，一般每个 CSS 属性定义的概述都指出了这个属性是默认继承的 (“Inherited: Yes”) 还是默认不继承的 (“Inherited: no”)。这决定了当你没有为元素的属性指定值时该如何计算值。  继承属性  当元素的一个 继承属性 （inherited property ）没有指定值时，则取父元素的同属性的 计算值 computed val">
-<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta property="og:updated_time" content="2017-08-10T15:56:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS的继承和优先级">
 <meta name="twitter:description" content="继承查看MDN文档或者其他的CSS手册的时候，一般每个 CSS 属性定义的概述都指出了这个属性是默认继承的 (“Inherited: Yes”) 还是默认不继承的 (“Inherited: no”)。这决定了当你没有为元素的属性指定值时该如何计算值。  继承属性  当元素的一个 继承属性 （inherited property ）没有指定值时，则取父元素的同属性的 计算值 computed val">
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先级"><span class="toc-number">2.</span> <span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#规则一"><span class="toc-number">2.0.1.</span> <span class="toc-text">规则一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则二"><span class="toc-number">2.0.2.</span> <span class="toc-text">规则二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则三"><span class="toc-number">2.0.3.</span> <span class="toc-text">规则三</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#声明"><span class="toc-number">3.</span> <span class="toc-text">声明</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先级"><span class="toc-number">2.</span> <span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#规则一"><span class="toc-number">2.1.</span> <span class="toc-text">规则一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则二"><span class="toc-number">2.2.</span> <span class="toc-text">规则二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则三"><span class="toc-number">2.3.</span> <span class="toc-text">规则三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#声明"><span class="toc-number">3.</span> <span class="toc-text">声明</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -137,7 +137,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>查看MDN文档或者其他的CSS手册的时候，一般每个 CSS 属性定义的概述都指出了这个属性是默认继承的 (“Inherited: Yes”) 还是默认不继承的 (“Inherited: no”)。这决定了当你没有为元素的属性指定值时该如何计算值。</p>
+    <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>查看MDN文档或者其他的CSS手册的时候，一般每个 CSS 属性定义的概述都指出了这个属性是默认继承的 (“Inherited: Yes”) 还是默认不继承的 (“Inherited: no”)。这决定了当你没有为元素的属性指定值时该如何计算值。</p>
 <ul>
 <li>继承属性</li>
 </ul>
@@ -147,7 +147,7 @@
 </ul>
 <p>当元素的一个 非继承属性 (在Mozilla code 里有时称之为 reset property  ) 没有指定值时，则取属性的 初始值initial value （该值在该属性的概述里被指定）。</p>
 <p>inherit 关键字用于显式地指定继承性，可用于继承性/非继承性属性。</p>
-<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><ul>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><ul>
 <li><p>优先级就是分配给指定的CSS声明的一个权重，它由匹配的选择器中的每一种选择器类型的个数决定。</p>
 </li>
 <li><p>处理优先级相同很简单，最后为大，即CSS中最后的那个声明将会被应用到元素上(覆盖性)。</p>
@@ -156,7 +156,7 @@
 <h4 id="规则一"><a href="#规则一" class="headerlink" title="规则一"></a>规则一</h4><p>样式出现的顺序决定着优先级，分别为: 内联样式 &gt; style标签内样式 &gt; 外部引入样式表。</p>
 <h4 id="规则二"><a href="#规则二" class="headerlink" title="规则二"></a>规则二</h4><p><strong>CSS基础选择器:</strong></p>
 <ul>
-<li>ID 选择器， 如 #id{}</li>
+<li>ID 选择器， 如 ##id{}</li>
 <li>类选择器， 如 .class{}</li>
 <li>属性选择器， 如 a[href=”segmentfault.com”]{}</li>
 <li>伪类选择器， 如 :hover{}</li>
@@ -167,7 +167,7 @@
 <p>选择器是具有优先级的，单个选择器同时选中某个元素的时候，内联样式 &gt; ID 选择器 &gt; 类选择器 = 属性选择器 = 伪类选择器 &gt; 标签选择器 = 伪元素选择器。</p>
 <h4 id="规则三"><a href="#规则三" class="headerlink" title="规则三"></a>规则三</h4><p>当不同的选择器匹配规则分别都匹配到同一个元素的时候，按照下面的规则进行应用样式：</p>
 <p>计算选择符中 ID 选择器的个数（a），计算选择符中类选择器、属性选择器以及伪类选择器的个数之和（b），计算选择符中标签选择器和伪元素选择器的个数之和（c）。按 a、b、c 的顺序依次比较大小，大的则优先级高，相等则比较下一个。若最后两个的选择符中 a、b、c 都相等，则按照“就近原则”来判断。</p>
-<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>在学习过程中，你可能发现给选择器加权值的说法，即 ID 选择器权值为 100，类选择器权值为 10，标签选择器权值为 1，当一个选择器由多个 ID 选择器、类选择器或标签选择器组成时，则将所有权值相加，然后再比较权值。这种说法其实是有问题的。比如一个由 11 个类选择器组成的选择器和一个由 1 个 ID 选择器组成的选择器指向同一个标签，按理说 110 &gt; 100，应该应用前者的样式，然而事实是应用后者的样式。错误的原因是：选择器的权值不能进位。还是拿刚刚的例子说明。11 个类选择器组成的选择器的总权值为 110，但因为 11 个均为类选择器，所以其实总权值最多不能超过 100， 你可以理解为 99.99，所以最终应用后者样式。</p>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>在学习过程中，你可能发现给选择器加权值的说法，即 ID 选择器权值为 100，类选择器权值为 10，标签选择器权值为 1，当一个选择器由多个 ID 选择器、类选择器或标签选择器组成时，则将所有权值相加，然后再比较权值。这种说法其实是有问题的。比如一个由 11 个类选择器组成的选择器和一个由 1 个 ID 选择器组成的选择器指向同一个标签，按理说 110 &gt; 100，应该应用前者的样式，然而事实是应用后者的样式。错误的原因是：选择器的权值不能进位。还是拿刚刚的例子说明。11 个类选择器组成的选择器的总权值为 110，但因为 11 个均为类选择器，所以其实总权值最多不能超过 100， 你可以理解为 99.99，所以最终应用后者样式。</p>
 <blockquote>
 <p>参考文章：<a href="https://segmentfault.com/a/1190000003860309" target="_blank" rel="external">CSS 样式优先级</a></p>
 </blockquote>
@@ -203,7 +203,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先级"><span class="toc-number">2.</span> <span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#规则一"><span class="toc-number">2.0.1.</span> <span class="toc-text">规则一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则二"><span class="toc-number">2.0.2.</span> <span class="toc-text">规则二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则三"><span class="toc-number">2.0.3.</span> <span class="toc-text">规则三</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#声明"><span class="toc-number">3.</span> <span class="toc-text">声明</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先级"><span class="toc-number">2.</span> <span class="toc-text">优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#规则一"><span class="toc-number">2.1.</span> <span class="toc-text">规则一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则二"><span class="toc-number">2.2.</span> <span class="toc-text">规则二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规则三"><span class="toc-number">2.3.</span> <span class="toc-text">规则三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#声明"><span class="toc-number">3.</span> <span class="toc-text">声明</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -261,21 +261,10 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<!--imagelightbox-->
-<link rel="stylesheet" href="/lib/imagelightbox/imagelightbox.min.css">
+
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/js/main.js"></script>
-<!--zoomimage-->
-<script src="/lib/imagelightbox/imagelightbox.min.js"></script>
-<!--zoomimage-->
-<script>
-    $( function()
-    {
-        $('p img').imageLightbox({overlay:true});
-    });
-    $('img').imageLightbox({overlay:true});
-</script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">

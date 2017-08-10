@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/2015-09-18-sort/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。排序改变原数组。 语法123arr.sort()arr.sort(compareFunction)  compareFunction可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。  无参无参的时">
-<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta property="og:updated_time" content="2017-08-10T15:56:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array sort 数组排序">
 <meta name="twitter:description" content="sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。排序改变原数组。 语法123arr.sort()arr.sort(compareFunction)  compareFunction可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。  无参无参的时">
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#无参"><span class="toc-number">2.</span> <span class="toc-text">无参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有参"><span class="toc-number">3.</span> <span class="toc-text">有参</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见排序"><span class="toc-number">3.1.</span> <span class="toc-text">常见排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序优化"><span class="toc-number">3.2.</span> <span class="toc-text">排序优化</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无参"><span class="toc-number">2.</span> <span class="toc-text">无参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有参"><span class="toc-number">3.</span> <span class="toc-text">有参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见排序"><span class="toc-number">3.1.</span> <span class="toc-text">常见排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序优化"><span class="toc-number">3.2.</span> <span class="toc-text">排序优化</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -138,14 +138,14 @@
 
   <div class="content" itemprop="articleBody">
     <p><code>sort()</code> 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。排序改变原数组。</p>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr.sort()</div><div class="line"></div><div class="line">arr.sort(compareFunction)</div></pre></td></tr></table></figure>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arr.sort()</div><div class="line"></div><div class="line">arr.sort(compareFunction)</div></pre></td></tr></table></figure>
 <blockquote>
 <p><code>compareFunction</code>可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照<strong>转换为的字符串的诸个字符的Unicode位点</strong>进行排序。</p>
 </blockquote>
-<h1 id="无参"><a href="#无参" class="headerlink" title="无参"></a>无参</h1><p>无参的时候元素按照转换为的字符串的诸个字符的Unicode位点进行排序。</p>
+<h2 id="无参"><a href="#无参" class="headerlink" title="无参"></a>无参</h2><p>无参的时候元素按照转换为的字符串的诸个字符的Unicode位点进行排序。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [[<span class="number">12</span>,<span class="number">21</span>,<span class="number">12</span>],<span class="number">21</span>,&#123;<span class="attr">name</span>: <span class="string">'1'</span>, <span class="attr">age</span>: <span class="number">2</span>&#125;,<span class="string">'1'</span>,<span class="number">12</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">10</span>];</div><div class="line">arr.sort(); <span class="comment">// ["1", 1, 10, 12, Array(3), 2, 21, Object, "name2"]</span></div></pre></td></tr></table></figure>
 <p><strong>说明</strong>： 上面的例子中，sort排序进行的第一步可以看作是在转换，由各种类型的数值统一都转换为字符串形式，转换后的结果类似这样：<code>[&#39;122112&#39;,21,&#39;name1age2&#39;,&#39;1&#39;,&#39;12&#39;,&#39;2&#39;,&#39;1&#39;,&#39;10&#39;]</code>，然后再根据这个数组的元素进行Unicode位点排序。关于Unicode排序掌握1. 数值类型在字符类型之前；2. 同为数值类型的按照计数位从前向后比较。</p>
-<h1 id="有参"><a href="#有参" class="headerlink" title="有参"></a>有参</h1><p>如果指明了 <code>compareFunction</code> ，那么数组会按照调用该函数的返回值排序。即 <code>current</code> 和 <code>next</code> 是两个将要被比较的元素：</p>
+<h2 id="有参"><a href="#有参" class="headerlink" title="有参"></a>有参</h2><p>如果指明了 <code>compareFunction</code> ，那么数组会按照调用该函数的返回值排序。即 <code>current</code> 和 <code>next</code> 是两个将要被比较的元素：</p>
 <ul>
 <li>如果 <code>compareFunction(current, next)</code> 小于 0 ，那么 current 会被排列到 next 之前；</li>
 <li>如果 <code>compareFunction(current, next)</code> 等于 0 ， current 和 next 的相对位置不变；</li>
@@ -154,7 +154,7 @@
 <p><strong>注：</strong><code>compareFunction(current, next)</code> 必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。</p>
 <p>所以，比较函数的格式如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (a is less than b by some ordering criterion) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">if</span> (a is greater than b by the ordering criterion) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// a must be equal to b</span></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="常见排序"><a href="#常见排序" class="headerlink" title="常见排序"></a>常见排序</h2><p><strong> 常规不传参Unicode排序 </strong></p>
+<h3 id="常见排序"><a href="#常见排序" class="headerlink" title="常见排序"></a>常见排序</h3><p><strong> 常规不传参Unicode排序 </strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numAscendArr = [<span class="number">12</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">20</span>];</div><div class="line">numArr.sort(); <span class="comment">// numArr = [1,12,20,3] 这不是我们想要的</span></div></pre></td></tr></table></figure>
 <p><strong>1. 数字数组升序排序</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numAscendArr = [<span class="number">12</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">20</span>];</div><div class="line">numAscendArr.sort(); <span class="comment">// numAscendArr = [1,2,12,20]</span></div></pre></td></tr></table></figure>
@@ -165,7 +165,7 @@
 <p><strong> 4. 对非 ASCII 字符排序</strong></p>
 <p>当排序非 ASCII 字符的字符串（如包含类似 e, é, è, a, ä 等字符的字符串）。一些非英语语言的字符串需要使用 String.localeCompare。借助这个函数可以将元素排序到正确的顺序。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> items = [<span class="string">'réservé'</span>, <span class="string">'premier'</span>, <span class="string">'cliché'</span>, <span class="string">'communiqué'</span>, <span class="string">'café'</span>, <span class="string">'adieu'</span>];</div><div class="line">items.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> a.localeCompare(b);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// items is ['adieu', 'café', 'cliché', 'communiqué', 'premier', 'réservé']</span></div></pre></td></tr></table></figure>
-<h2 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h2><p><code>compareFunction</code> 可能需要对元素做多次映射以实现排序，尤其当 <code>compareFunction</code> 较为复杂，且元素较多的时候，某些 <code>compareFunction</code> 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复。</p>
+<h3 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h3><p><code>compareFunction</code> 可能需要对元素做多次映射以实现排序，尤其当 <code>compareFunction</code> 较为复杂，且元素较多的时候，某些 <code>compareFunction</code> 可能会导致很高的负载。使用 map 辅助排序将会是一个好主意。基本思想是首先将数组中的每个元素比较的实际值取出来，排序后再将数组恢复。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> list = [</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'Edward'</span>, <span class="attr">value</span>: <span class="number">21</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'Sharpe'</span>, <span class="attr">value</span>: <span class="number">37</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'And'</span>, <span class="attr">value</span>: <span class="number">45</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'The'</span>, <span class="attr">value</span>: <span class="number">-12</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'Magnetic'</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">'Zeros'</span>, <span class="attr">value</span>: <span class="number">37</span>&#125;</div><div class="line">];</div><div class="line"><span class="comment">// 对需要排序的数字和位置的临时存储</span></div><div class="line"><span class="keyword">var</span> mapped = list.map(<span class="function"><span class="keyword">function</span>(<span class="params">el, i</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;<span class="attr">index</span>: i, <span class="attr">value</span>: el.value&#125;;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 按照多个值排序数组</span></div><div class="line">mapped.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> +(a.value &gt; b.value) || +(a.value === b.value) - <span class="number">1</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 根据索引得到排序的结果</span></div><div class="line"><span class="keyword">var</span> result = mapped.map(<span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> list[el.index];</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
   </div>
 </article>
@@ -198,7 +198,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#无参"><span class="toc-number">2.</span> <span class="toc-text">无参</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#有参"><span class="toc-number">3.</span> <span class="toc-text">有参</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常见排序"><span class="toc-number">3.1.</span> <span class="toc-text">常见排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序优化"><span class="toc-number">3.2.</span> <span class="toc-text">排序优化</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无参"><span class="toc-number">2.</span> <span class="toc-text">无参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有参"><span class="toc-number">3.</span> <span class="toc-text">有参</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常见排序"><span class="toc-number">3.1.</span> <span class="toc-text">常见排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序优化"><span class="toc-number">3.2.</span> <span class="toc-text">排序优化</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -256,21 +256,10 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<!--imagelightbox-->
-<link rel="stylesheet" href="/lib/imagelightbox/imagelightbox.min.css">
+
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
 <script src="/js/main.js"></script>
-<!--zoomimage-->
-<script src="/lib/imagelightbox/imagelightbox.min.js"></script>
-<!--zoomimage-->
-<script>
-    $( function()
-    {
-        $('p img').imageLightbox({overlay:true});
-    });
-    $('img').imageLightbox({overlay:true});
-</script>
 <!-- Google Analytics -->
 
     <script type="text/javascript">
