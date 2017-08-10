@@ -1272,6 +1272,9 @@ article .content .caption {
 .pagination a:hover:not(.active) {
   color: #eee;
 }
+#tags .tag-list .tag-list-item .tag-list-count {
+  margin-left: 0.5rem;
+}
 .highlight {
   color: #d1d9e1;
   background: #474949;
