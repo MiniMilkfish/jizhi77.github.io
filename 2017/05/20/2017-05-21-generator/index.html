@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。 这一篇就接着异步应用的话题整理一下Generator函数的内容。 回调嵌套和Promise异步操作的回调嵌套写法： 123456789var fs = requir">
-<meta name="keywords" content="ES6,Generator">
+<meta name="keywords" content="Generator,ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Generator 函数的异步应用">
 <meta property="og:url" content="http://yoursite.com/2017/05/20/2017-05-21-generator/index.html">
@@ -56,9 +56,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Posts</a></li>
-         
           <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
         
       </ul>
     </span>
@@ -182,12 +184,6 @@
   </div>
 </article>
 
-    <div class="blog-post-comments">
-        <div id="disqus_thread">
-            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </div>
-    </div>
-
 
 
     </div>
@@ -200,9 +196,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Posts</a></li>
-         
           <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
         
       </ul>
     </div>
@@ -250,9 +248,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/archives/">Posts</a></li>
-         
           <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/probberechts">Projects</a></li>
         
       </ul>
     </nav>
@@ -283,17 +283,5 @@
     </script>
 
 <!-- Disqus Comments -->
-
-    <script type="text/javascript">
-        var disqus_shortname = 'wangjz1991';
-
-        (function(){
-            var dsq = document.createElement('script');
-            dsq.type = 'text/javascript';
-            dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        }());
-    </script>
 
 
