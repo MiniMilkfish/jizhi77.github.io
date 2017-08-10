@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="网络层主要讨论的是网络互联问题，也就是讨论多个网络通过路由器互连成为一个互联网络的各种问题。网络层的核心内容是网际协议IP，只有较深入的掌握了IP协议的主要内容，才能理解互连网是怎样工作的。 网际协议IP网际协议IP是TCP/IP体系中最重要的两个协议之一，与IP协议配套使用的还有四个协议。ARP、RARP、ICMP、IGMP。  从一般的概念来讲，将网络互相连接起来要使用一些中间设备。根据中间设">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络层">
+<meta property="og:url" content="http://yoursite.com/posts/2017/05/02/2017-05-02-net3/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="网络层主要讨论的是网络互联问题，也就是讨论多个网络通过路由器互连成为一个互联网络的各种问题。网络层的核心内容是网际协议IP，只有较深入的掌握了IP协议的主要内容，才能理解互连网是怎样工作的。 网际协议IP网际协议IP是TCP/IP体系中最重要的两个协议之一，与IP协议配套使用的还有四个协议。ARP、RARP、ICMP、IGMP。  从一般的概念来讲，将网络互相连接起来要使用一些中间设备。根据中间设">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP%E5%8F%8A%E5%85%B6%E9%85%8D%E5%A5%97%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/IP%E5%9C%B0%E5%9D%80%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%8F%B7%E5%AD%97%E6%AE%B5.png">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/IP%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%9A%84%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络层">
+<meta name="twitter:description" content="网络层主要讨论的是网络互联问题，也就是讨论多个网络通过路由器互连成为一个互联网络的各种问题。网络层的核心内容是网际协议IP，只有较深入的掌握了IP协议的主要内容，才能理解互连网是怎样工作的。 网际协议IP网际协议IP是TCP/IP体系中最重要的两个协议之一，与IP协议配套使用的还有四个协议。ARP、RARP、ICMP、IGMP。  从一般的概念来讲，将网络互相连接起来要使用一些中间设备。根据中间设">
+<meta name="twitter:image" content="http://ojd8i48oc.bkt.clouddn.com/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP%E5%8F%8A%E5%85%B6%E9%85%8D%E5%A5%97%E5%8D%8F%E8%AE%AE.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>网络层</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/2017/05/13/2017-05-13-seajs/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/2017/05/02/2017-05-02-cache1/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&text=网络层"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&is_video=false&description=网络层"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络层&body=Check out this article: http://yoursite.com/posts/2017/05/02/2017-05-02-net3/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&name=网络层&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网际协议IP"><span class="toc-number">1.</span> <span class="toc-text">网际协议IP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP地址分类"><span class="toc-number">2.</span> <span class="toc-text">IP地址分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本IP分类"><span class="toc-number">3.</span> <span class="toc-text">基本IP分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A类地址"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">A类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B类地址"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">B类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C类地址"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">C类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全0或全1"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">全0或全1</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP和MAC"><span class="toc-number">4.</span> <span class="toc-text">IP和MAC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARP和RARP"><span class="toc-number">5.</span> <span class="toc-text">ARP和RARP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP数据报-分组-的格式"><span class="toc-number">6.</span> <span class="toc-text">IP数据报(分组)的格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#子网划分"><span class="toc-number">7.</span> <span class="toc-text">子网划分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CIDR无分类编址"><span class="toc-number">8.</span> <span class="toc-text">CIDR无分类编址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#路由选择"><span class="toc-number">9.</span> <span class="toc-text">路由选择</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        网络层
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-01T16:00:00.000Z" itemprop="datePublished">2017-05-02</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机网络/">计算机网络</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>网络层主要讨论的是网络互联问题，也就是讨论多个网络通过路由器互连成为一个互联网络的各种问题。网络层的核心内容是网际协议IP，只有较深入的掌握了IP协议的主要内容，才能理解互连网是怎样工作的。</p>
+<h1 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h1><p>网际协议IP是TCP/IP体系中最重要的两个协议之一，与IP协议配套使用的还有四个协议。<code>ARP</code>、<code>RARP</code>、<code>ICMP</code>、<code>IGMP</code>。</p>
+<p><img src="http://ojd8i48oc.bkt.clouddn.com/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP%E5%8F%8A%E5%85%B6%E9%85%8D%E5%A5%97%E5%8D%8F%E8%AE%AE.png" alt="网际协议IP及其配套协议"></p>
+<p>从一般的概念来讲，将网络互相连接起来要使用一些中间设备。根据中间设备所在的层次，可以有以下四种不同的中间设备。</p>
+<ul>
+<li>物理层使用的中间设备叫作<code>转发器</code></li>
+<li>链路层使用的中间设备叫作<code>网桥</code>或者<code>桥接器</code></li>
+<li>网络层使用的中间设备叫作<code>路由器</code></li>
+<li>网络层以上使用的中间设备叫作<code>网关</code></li>
+</ul>
+<h1 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h1><p>IP地址是一个32位的标识符，用来进行寻址。32位比特标识以8位为一组，用十进制和<code>.</code>号标识则成为我们常见的形式，<code>xxx.xxx.xxx.xxx</code>。</p>
+<p>IP地址的编址方法：</p>
+<ul>
+<li>分类的IP地址，最基本的编址方法</li>
+<li>子网划分的编址方法，这是对最基本的编址方法的改进</li>
+<li>构成超网，新的无分类的编址方法</li>
+</ul>
+<h1 id="基本IP分类"><a href="#基本IP分类" class="headerlink" title="基本IP分类"></a>基本IP分类</h1><p>所谓分类的IP地址就是将IP地址划分为若干个固定类，每一类地址都由两个固定长度的字段组成。其中第一个字段是<code>网络编号</code>，它标志主机或路由器连接到的网络。一个网络号在整个因特网中必须是唯一的。第二个字段是主机号，他标识该主机或路由器。一个主机号在它前面的网络号所指明的网络内必须唯一。由此可见，一个IP地址在整个因特网中是唯一的。</p>
+<p><img src="http://ojd8i48oc.bkt.clouddn.com/IP%E5%9C%B0%E5%9D%80%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%8F%B7%E5%AD%97%E6%AE%B5.png" alt="基本分类IP地址"></p>
+<h4 id="A类地址"><a href="#A类地址" class="headerlink" title="A类地址"></a>A类地址</h4><p>网络号字段占一个字节即前八位，第一位固定位0，所以A类网络前八位分别从00000000-01111111(0-127)。7位可用则有128个网络号，这里要减去2，因为有两个特殊的地方。</p>
+<p>一是网络号字段全0表示本网络作为保留地址。</p>
+<p>二是网络号字段全1为127(即01111111）保留作为本地软件环回测试本主机的进程之间的通信之用。若主机发送一个目的地址为环回地址(比如127.0.0.1）的IP数据报，则本主机中的协议软件直接处理数据报中的数据，而不会把数据报发送到任何网络。目的地址为环回地址的IP数据报永远不会出现在任何网络上，因为网络号为127的地址根本不是一个网络地址。</p>
+<p>主机号字段占三个字节即后24位。24位则有2^24个主机号，也就是说每个A类网络中的最大主机数应该是2^24个，但这里要减去2。</p>
+<p>因为主机号全0表示该IP地址所在的网络地址，如5.6.7.8所在的网络地址为5.0.0.0,；而主机号全1表示全部，即本网络上的所有主机，因此主机号为全1的地址表示该网络上的所有主机。</p>
+<p>IP地址空间共有2^32个地址，A类地址空间共有2^31个，因此占整个IP地址空间的50%。</p>
+<h4 id="B类地址"><a href="#B类地址" class="headerlink" title="B类地址"></a>B类地址</h4><p>结合A类地址中讲到的基础知识，B类地址网络号字段占两个字节即前16位，前两位固定为10，因此B类网络前八位分别为从10000000-10111111(128-191)。网络号字段全0也应减去，主机号字段全0全1也应减去。</p>
+<h4 id="C类地址"><a href="#C类地址" class="headerlink" title="C类地址"></a>C类地址</h4><p>C类地址网络号字段占三个字节即前24位，前三位固定为110，因此C类网络前八位分别为从11000000-11011111(192-243)。网络号字段全0也应减去，主机号字段全0全1也应减去。</p>
+<h4 id="全0或全1"><a href="#全0或全1" class="headerlink" title="全0或全1"></a>全0或全1</h4><table>
+<thead>
+<tr>
+<th>网络号</th>
+<th>主机号</th>
+<th>代表的意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全0</td>
+<td>全0</td>
+<td>本网络的本主机</td>
+</tr>
+<tr>
+<td>全0</td>
+<td>全1</td>
+<td>本网络上的所有主机</td>
+</tr>
+<tr>
+<td>全0</td>
+<td>host-id</td>
+<td>本网络上的某个主机</td>
+</tr>
+<tr>
+<td>全1</td>
+<td>全0</td>
+<td>本网络地址</td>
+</tr>
+<tr>
+<td>net-id</td>
+<td>全1</td>
+<td>广播地址，本网络上的所有主机</td>
+</tr>
+<tr>
+<td>127</td>
+<td>非全0或全1的任何数</td>
+<td>本地软件环回测试之用</td>
+</tr>
+</tbody>
+</table>
+<h1 id="IP和MAC"><a href="#IP和MAC" class="headerlink" title="IP和MAC"></a>IP和MAC</h1><p><img src="http://ojd8i48oc.bkt.clouddn.com/IP%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%A1%AC%E4%BB%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="IP地址和硬件地址的区别"></p>
+<p>IP地址放在IP分组的首部，而硬件地址则放在MAC帧的首部，在网络层和网络层以上使用的是IP地址，而数据链路层及以下使用的是硬件地址</p>
+<h1 id="ARP和RARP"><a href="#ARP和RARP" class="headerlink" title="ARP和RARP"></a>ARP和RARP</h1><p>实际应用中，我们如果已经知道了一个机器的IP地址，需要找出其相应的物理地址；或反过来，知道了物理地址需要找出其对应的IP地址。ARP地址解析协议和RARP逆向地址解析协议就是用来实现这个需求的。</p>
+<p>ARP的方法是在主机ARP高速缓存中存放一个IP地址到硬件地址的映射表，并且这个映射表还需经常更新。</p>
+<h1 id="IP数据报-分组-的格式"><a href="#IP数据报-分组-的格式" class="headerlink" title="IP数据报(分组)的格式"></a>IP数据报(分组)的格式</h1><p><img src="http://ojd8i48oc.bkt.clouddn.com/IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%9A%84%E6%A0%BC%E5%BC%8F.png" alt="IP数据报的格式"></p>
+<p>TCP/IP标准中，各种数据格式常以32位即4字节为单位来描述。从图可以看出，一个IP数据报由首部和数据两部分组成。首部的前一部分是固定长度，共20字节，是所有IP数据报必须具有的。首部固定部分后面是可选字段。</p>
+<h1 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h1><p>从主机号字段借用若干位来作为子网号，这样就形成了<code>&lt;net-id&gt;,&lt;subnet-id&gt;,&lt;host-id&gt;</code>的三级地址。</p>
+<p>对于外部网络来说，目标主机的IP还是两级结构，当到达了目标主机时，就需要用子网掩码解析出该IP地址对应的子网所在。要验证是否进行了子网划分和子网号段有几位，可以用子网掩码和IP地址进行按位与操作，结果便是进行子网划分后的三级地址。</p>
+<h1 id="CIDR无分类编址"><a href="#CIDR无分类编址" class="headerlink" title="CIDR无分类编址"></a>CIDR无分类编址</h1><p>CIDR把32位的IP地址划分为两个部分，前面的部分是网络前缀，用来指明网络，后面的部分则用来指明主机。</p>
+<p>如：</p>
+<p>18.14.35.7/20=<strong>10000000 00001110 0010</strong>0011 00000111</p>
+<p>CIDR和基础的分类方式完全分离，更好的利用了地址空间。</p>
+<h1 id="路由选择"><a href="#路由选择" class="headerlink" title="路由选择"></a>路由选择</h1><p>todo</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网际协议IP"><span class="toc-number">1.</span> <span class="toc-text">网际协议IP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP地址分类"><span class="toc-number">2.</span> <span class="toc-text">IP地址分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本IP分类"><span class="toc-number">3.</span> <span class="toc-text">基本IP分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A类地址"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">A类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B类地址"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">B类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C类地址"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">C类地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全0或全1"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">全0或全1</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP和MAC"><span class="toc-number">4.</span> <span class="toc-text">IP和MAC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ARP和RARP"><span class="toc-number">5.</span> <span class="toc-text">ARP和RARP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IP数据报-分组-的格式"><span class="toc-number">6.</span> <span class="toc-text">IP数据报(分组)的格式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#子网划分"><span class="toc-number">7.</span> <span class="toc-text">子网划分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CIDR无分类编址"><span class="toc-number">8.</span> <span class="toc-text">CIDR无分类编址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#路由选择"><span class="toc-number">9.</span> <span class="toc-text">路由选择</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&text=网络层"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&is_video=false&description=网络层"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络层&body=Check out this article: http://yoursite.com/posts/2017/05/02/2017-05-02-net3/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&title=网络层"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017/05/02/2017-05-02-net3/&name=网络层&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-104402094-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

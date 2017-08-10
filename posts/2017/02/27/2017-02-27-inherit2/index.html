@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="基础类，提供简洁的 OO 实现。可供参考。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript继承实现(二)">
+<meta property="og:url" content="http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="基础类，提供简洁的 OO 实现。可供参考。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript继承实现(二)">
+<meta name="twitter:description" content="基础类，提供简洁的 OO 实现。可供参考。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>JavaScript继承实现(二)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/2017/03/10/2017-03-10-webpack-devtool/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/2017/02/26/2017-02-26-inherit1/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&text=JavaScript继承实现(二)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&is_video=false&description=JavaScript继承实现(二)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript继承实现(二)&body=Check out this article: http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&name=JavaScript继承实现(二)&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaScript继承实现(二)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-02-26T16:00:00.000Z" itemprop="datePublished">2017-02-27</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>基础类，提供简洁的 OO 实现。可供参考。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Empty</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">implement</span>(<span class="params">properties</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> superclass = properties.extend;</div><div class="line">    <span class="keyword">var</span> mixins = properties.mixins;</div><div class="line">    <span class="keyword">var</span> statics = properties.statics;</div><div class="line">    <span class="keyword">if</span> (superclass) &#123;</div><div class="line">      Class.Mutators.extend.call(<span class="keyword">this</span>, superclass, properties);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (mixins) &#123;</div><div class="line">      Class.Mutators.mixins.call(<span class="keyword">this</span>, mixins);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (statics) &#123;</div><div class="line">      Class.Mutators.statics.call(<span class="keyword">this</span>, statics);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">mixin</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     * 混入属性（原型方法合并）</span></div><div class="line"><span class="comment">     * [mixin1, mixin2] 扩展类后面的优先，mixin2 定义的覆盖 mixin1 定义的</span></div><div class="line"><span class="comment">     * 主类最优先，扩展类不覆盖主类</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">var</span> args = C.Array.makeArray(<span class="built_in">arguments</span>);</div><div class="line">    args = (args.length == <span class="number">1</span>) ? args[<span class="number">0</span>] : args;</div><div class="line"></div><div class="line">    <span class="comment">// 获取主类自身已经存在的属性</span></div><div class="line">    <span class="keyword">var</span> base = args.shift();</div><div class="line">    <span class="keyword">var</span> proto = base.prototype;</div><div class="line"></div><div class="line">    <span class="comment">// 合并混入类的属性，保存在一个临时对象中</span></div><div class="line">    <span class="keyword">var</span> prototypes = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> item;</div><div class="line">    <span class="comment">// 遍历mixins</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = args.length; i &lt; len; i++) &#123;</div><div class="line">      item = args[i];</div><div class="line">      <span class="comment">// 同名覆盖，不深度mix</span></div><div class="line">      <span class="keyword">var</span> mixinPrototypes = item.prototype || item;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> mixinPrototypes) &#123;</div><div class="line">        <span class="keyword">if</span> (C.String.startsWith(p, <span class="string">'_'</span>) &amp;&amp; (prototypes[p] !== <span class="literal">undefined</span>)) &#123;</div><div class="line">          C.warn(<span class="string">'[Class] - 类 '</span> + base.displayName + <span class="string">' mixins 扩展类之间的私有属性 '</span> + p +</div><div class="line">              <span class="string">' 冲突，可能会导致应用出现未知错误，建议修改'</span>);</div><div class="line">        &#125;</div><div class="line">        prototypes[p] = mixinPrototypes[p];</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 主类最优先，扩展类不覆盖主类，不深度mix</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> prototypes) &#123;</div><div class="line">      <span class="keyword">if</span> (!proto.hasOwnProperty(p)) &#123;</div><div class="line">        proto[p] = prototypes[p];</div><div class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (C.String.startsWith(p, <span class="string">'_'</span>)) &#123;</div><div class="line">        C.warn(<span class="string">'[Class] - 类 '</span> + base.displayName + <span class="string">' 的私有属性 '</span> + p +</div><div class="line">            <span class="string">' 和 mixins 扩展类冲突，可能会导致应用出现未知错误，建议修改'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">classify</span>(<span class="params">cls</span>) </span>&#123;</div><div class="line">    cls.extend = Class.extend;</div><div class="line">    <span class="keyword">return</span> cls;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Class</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!(<span class="keyword">this</span> <span class="keyword">instanceof</span> Class) &amp;&amp; C.isFunction(o)) &#123;</div><div class="line">      <span class="keyword">return</span> classify(o);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Class.create = <span class="function"><span class="keyword">function</span>(<span class="params">superclass, properties</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!C.isFunction(superclass)) &#123;</div><div class="line">      properties = superclass;</div><div class="line">      superclass = <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">    properties || (properties = &#123;&#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 如果未定义superclass，则使用extend</span></div><div class="line">    <span class="comment">// 如果未定义extend，则使用Class</span></div><div class="line">    superclass || (superclass = properties.extend || <span class="built_in">Object</span>);</div><div class="line">    properties.extend = superclass;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> subclass = properties.subclass;</div><div class="line">    <span class="keyword">if</span> (!subclass) &#123;</div><div class="line">      <span class="comment">// 子类的构造函数</span></div><div class="line">      <span class="keyword">var</span> <span class="keyword">constructor</span>;</div><div class="line">      if (properties.hasOwnProperty('<span class="keyword">constructor</span>')) &#123;</div><div class="line">        <span class="keyword">constructor</span> = properties.<span class="keyword">constructor</span>;</div><div class="line">      &#125; else &#123;</div><div class="line">        <span class="keyword">constructor</span> = function() &#123;</div><div class="line">          <span class="comment">// 调用父类的构造函数</span></div><div class="line">          superclass.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">        &#125;;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">var</span> xtype = properties.xtype || <span class="string">''</span>;</div><div class="line">      <span class="keyword">var</span> types = xtype.split(<span class="string">'-'</span>);</div><div class="line">      <span class="keyword">var</span> className = <span class="string">''</span>;</div><div class="line">      C.forEach(types, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">        className += C.String.ucfirst(name);</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 定义空的子类，并调用子类定义的构造函数</span></div><div class="line">        <span class="keyword">constructor</span>.apply(this, arguments);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      className &amp;&amp; (F.displayName = className);</div><div class="line"></div><div class="line">      // 实例属性添加到子类</div><div class="line">      implement.call(F, properties);</div><div class="line">      // Make subclass extendable.</div><div class="line">      return classify(F);</div><div class="line">    &#125; else &#123;</div><div class="line">      <span class="comment">// 实例属性添加到子类</span></div><div class="line">      implement.call(subclass, properties);</div><div class="line">      <span class="comment">// Make subclass extendable.</span></div><div class="line">      <span class="keyword">return</span> classify(subclass);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  Class.extend = <span class="function"><span class="keyword">function</span>(<span class="params">properties</span>) </span>&#123;</div><div class="line">    properties || (properties = &#123;&#125;);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!properties.extend) &#123;</div><div class="line">      properties.extend = <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> Class.create(properties);</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  Class.Mutators = &#123;</div><div class="line">    <span class="string">'extend'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">superclass, properties</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> existed = <span class="keyword">this</span>.prototype;</div><div class="line">      <span class="keyword">var</span> proto = createProto(superclass.prototype);</div><div class="line">      proto.constructor = <span class="keyword">this</span>;</div><div class="line">      <span class="keyword">this</span>.superclass = superclass.prototype;</div><div class="line">      <span class="comment">// 需要mix的属性</span></div><div class="line">      <span class="keyword">var</span> mixProperties = properties.mixAttrs || <span class="keyword">this</span>.superclass.mixAttrs || [];</div><div class="line"></div><div class="line">      <span class="comment">// 删除冗余的临时属性</span></div><div class="line">      properties.extend = <span class="literal">null</span>;</div><div class="line">      <span class="keyword">delete</span> properties.extend;</div><div class="line">      properties.subclass = <span class="literal">null</span>;</div><div class="line">      <span class="keyword">delete</span> properties.subclass;</div><div class="line"></div><div class="line">      C.mix(existed, properties, <span class="literal">true</span>, <span class="literal">true</span>);</div><div class="line"></div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> p <span class="keyword">in</span> existed) &#123;</div><div class="line">        <span class="keyword">if</span> (existed.hasOwnProperty(p)) &#123;</div><div class="line">          <span class="keyword">if</span> (C.String.startsWith(p, <span class="string">'_'</span>) &amp;&amp; (proto[p] !== <span class="literal">undefined</span>) &amp;&amp;</div><div class="line">              !proto.hasOwnProperty(p)) &#123;</div><div class="line">            <span class="keyword">var</span> c = superclass;</div><div class="line">            <span class="keyword">while</span> (c) &#123;</div><div class="line">              <span class="keyword">if</span> (c.prototype.hasOwnProperty(p)) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">              &#125;</div><div class="line">              c = c.superclass &amp;&amp; c.superclass.constructor;</div><div class="line">            &#125;</div><div class="line">            C.warn(<span class="string">'[Class] - 父类 '</span> + c.displayName + <span class="string">' 的私有属性 '</span> + p + <span class="string">' 被子类 '</span> +</div><div class="line">                (<span class="keyword">this</span>.displayName) + <span class="string">' 覆盖，可能会导致应用出现未知错误，建议不要覆盖该属性'</span>);</div><div class="line"></div><div class="line">          &#125;</div><div class="line"></div><div class="line">          <span class="keyword">if</span> ((C.inArray(p, mixProperties) &gt; <span class="number">-1</span>)) &#123;</div><div class="line">            <span class="keyword">if</span> (C.isPlainObject(existed[p])) &#123;</div><div class="line">              <span class="keyword">var</span> properties = &#123;&#125;;</div><div class="line">              proto[p] || (proto[p] = &#123;&#125;);</div><div class="line">              C.mix(properties, proto[p], existed[p]);</div><div class="line">              proto[p] = properties;</div><div class="line">            &#125;</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            proto[p] = existed[p];</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">this</span>.prototype = proto;</div><div class="line"></div><div class="line">      <span class="comment">// 如果定义了xtype,则将其添加到组件管理池中</span></div><div class="line">      <span class="keyword">var</span> xtype = proto.xtype;</div><div class="line">      <span class="keyword">if</span> (xtype) &#123;</div><div class="line">        ControlManager.setConstructorByXType(xtype, &#123;</div><div class="line">          <span class="keyword">constructor</span>: this</div><div class="line">        &#125;);</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    // 用来标明所创建的类需要从哪些类中混入属性</div><div class="line">    'mixins': function(mixins) &#123;</div><div class="line">      mixins.unshift(<span class="keyword">this</span>);</div><div class="line">      mixin(mixins);</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 静态属性</span></div><div class="line">    <span class="string">'statics'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">staticProperties</span>) </span>&#123;</div><div class="line">      C.mix(<span class="keyword">this</span>, staticProperties, <span class="literal">true</span>, <span class="literal">true</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> createProto = <span class="built_in">Object</span>.create ? <span class="function"><span class="keyword">function</span>(<span class="params">proto</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(proto);</div><div class="line">  &#125; : <span class="function"><span class="keyword">function</span>(<span class="params">proto</span>) </span>&#123;</div><div class="line">    Empty.prototype = proto;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Empty();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  C.Class = Class;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&text=JavaScript继承实现(二)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&is_video=false&description=JavaScript继承实现(二)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript继承实现(二)&body=Check out this article: http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&title=JavaScript继承实现(二)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017/02/27/2017-02-27-inherit2/&name=JavaScript继承实现(二)&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-104402094-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
