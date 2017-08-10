@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。 这一篇就接着异步应用的话题整理一下Generator函数的内容。 回调嵌套和Promise异步操作的回调嵌套写法： 123456789var fs = requir">
+<meta name="keywords" content="ES6,Generator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generator 函数的异步应用">
+<meta property="og:url" content="http://yoursite.com/posts/2017-05-21-generator/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。 这一篇就接着异步应用的话题整理一下Generator函数的内容。 回调嵌套和Promise异步操作的回调嵌套写法： 123456789var fs = requir">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Generator 函数的异步应用">
+<meta name="twitter:description" content="上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。 这一篇就接着异步应用的话题整理一下Generator函数的内容。 回调嵌套和Promise异步操作的回调嵌套写法： 123456789var fs = requir">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Generator 函数的异步应用</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/2017-05-20-promise/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/2017-05-13-seajs/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017-05-21-generator/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017-05-21-generator/&text=Generator 函数的异步应用"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017-05-21-generator/&is_video=false&description=Generator 函数的异步应用"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Generator 函数的异步应用&body=Check out this article: http://yoursite.com/posts/2017-05-21-generator/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017-05-21-generator/&name=Generator 函数的异步应用&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回调嵌套和Promise"><span class="toc-number">1.</span> <span class="toc-text">回调嵌套和Promise</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator-函数"><span class="toc-number">2.</span> <span class="toc-text">Generator 函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator的协程"><span class="toc-number">3.</span> <span class="toc-text">Generator的协程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator的数据交换和错误处理"><span class="toc-number">4.</span> <span class="toc-text">Generator的数据交换和错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据交换"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">数据交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误处理"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">错误处理</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator函数封装异步任务"><span class="toc-number">5.</span> <span class="toc-text">Generator函数封装异步任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thunk函数"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">Thunk函数</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Generator 函数的异步应用
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-05-19T16:00:00.000Z" itemprop="datePublished">2017-05-20</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ES6/">ES6</a>, <a class="tag-link" href="/tags/Generator/">Generator</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>上一篇整理了应用Promise实现链式调用避免回调函数嵌套的内容，回调函数本身并没有问题，它的问题出现在多个回调函数嵌套。但是Promise也并非十全十美，then的链式调用将代码的语义化降低，一长串的then使得代码逻辑不是很直观。</p>
+<p>这一篇就接着异步应用的话题整理一下<code>Generator</code>函数的内容。</p>
+<h1 id="回调嵌套和Promise"><a href="#回调嵌套和Promise" class="headerlink" title="回调嵌套和Promise"></a>回调嵌套和Promise</h1><p><strong>异步操作的回调嵌套写法：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'/usr/lib/public/index1.js'</span>, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</div><div class="line">  fs.readFile(<span class="string">'/usr/lib/public/index2.js'</span>, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</div><div class="line">    fs.readFile(<span class="string">'/usr/lib/public/index3.js'</span>, <span class="string">'utf-8'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">error, data</span>) </span>&#123;</div><div class="line">      <span class="comment">// ...</span></div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>异步操作的Promise链式调用写法：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> readFile = <span class="built_in">require</span>(<span class="string">'fs-readfile-promise'</span>);</div><div class="line"></div><div class="line">readFile(<span class="string">'/usr/lib/public/index1.js'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">data1</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data1);</div><div class="line">  <span class="keyword">return</span> readFile(<span class="string">'/usr/lib/public/index3.js'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data2</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data2);</div><div class="line">  <span class="keyword">return</span> readFile(<span class="string">'/usr/lib/public/index3.js'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data3</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data3);</div><div class="line">  <span class="keyword">return</span> readFile(<span class="string">'/usr/lib/public/index3.js'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>fs-readfile-promise</code>模块会将<code>fs</code>模块的readFile方法包装为Promise构造形式，<code>readFile(&#39;/usr/lib/public/index1.js&#39;)</code>会执行原本的读取文件操作，并封装了resolve和reject，本身返回的是Promise实例，所以可以调用then方法。</p>
+<p>结合上一节Promise的内容，上面两种写法很好理解。</p>
+<h1 id="Generator-函数"><a href="#Generator-函数" class="headerlink" title="Generator 函数"></a>Generator 函数</h1><p>本身Generator函数的设计初衷并不是针对解决异步问题的，它的原意是通过将程序分段执行从而实现程序执行的不同时期会有不同的状态(个人理解，可能表述上欠妥当)，可以简单理解为一个状态机。但是我们通过他的这些特性，正好可以设计用来解决异步问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> *<span class="title">gene1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene1 start...'</span>);</div><div class="line">  <span class="keyword">yield</span> gene2();</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene2 end...'</span>);</div><div class="line">  <span class="keyword">yield</span> gene3();</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene3 end...'</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene1 end...'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gene2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene2 start...'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gene3</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'gene3 start...'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen = gene1();</div><div class="line">gen.next(); &#123;<span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">false</span>&#125;</div><div class="line">gen.next(); &#123;<span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">false</span>&#125;</div><div class="line">gen.next(); &#123;<span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">true</span>&#125;</div></pre></td></tr></table></figure>
+<p><strong>代码解读</strong></p>
+<p>如上的代码，第一步执行gene1()返回遍历器对象，第二步调用遍历器对象的next()依次从函数头部开始执行，直到遇到第一个yield表达式，此时的执行结果为<code>gene1 start...和gene2 start...</code>，第三步再次调用next()便从上次结束的位置依次往下执行，直到碰到第二个yield表达式，此时的执行结果为<code>gene2 start...和gene3 start...</code>，第四步再次调用next()后，代码执行到结束位置，因此整个流程结束，对应遍历器对象的返回值对象的done为false，此时的执行结果为<code>gene3 start...和gene3 start...</code>，</p>
+<p><strong>Generator函数说明</strong></p>
+<p>Generator 函数是一个普通函数，但是有如下特征：</p>
+<ul>
+<li>function关键字与函数名之间有一个星号</li>
+<li>函数体内部使用yield表达式，定义不同的内部状态</li>
+</ul>
+<p>Generator 函数的调用方法与普通函数一样，也是在函数名后面加上一对圆括号。不同的是，调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象。</p>
+<p>下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个yield表达式（或return语句）为止。换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。</p>
+<p>为了更好的理解Generator，引入一个新的概念-协程。协程的意思是多个线程互相协作，完成异步任务</p>
+<ul>
+<li>第一步，协程A开始执行。</li>
+<li>第二步，协程A执行到一半，进入暂停，执行权转移到协程B。</li>
+<li>第三步，（一段时间后）协程B交还执行权。</li>
+<li>第四步，协程A恢复执行。</li>
+<li>第五步，重复上述操作，直到执行到结束位置或者显示的return。</li>
+</ul>
+<p>协程的概念和Generator的理念不谋而合。</p>
+<h1 id="Generator的协程"><a href="#Generator的协程" class="headerlink" title="Generator的协程"></a>Generator的协程</h1><p>Generator 函数不同于普通函数的一个地方，即执行它不会返回结果，返回的是指针对象。调用指针g的next方法，会移动内部指针，指向每一次遇到的yield语句。也就是说Generator函数内部的每一个yield语句都需要对应的指针对象的next方法调用，一次next只能执行一套yield语句。</p>
+<p>换言之，next方法的作用是分阶段执行Generator函数。每次调用next方法，会返回一个对象，表示当前阶段的信息（value属性和done属性）。value属性是yield语句后面表达式的值，表示当前阶段的值，所以将yield表达式赋值给其他变量是无效的；done属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。</p>
+<h1 id="Generator的数据交换和错误处理"><a href="#Generator的数据交换和错误处理" class="headerlink" title="Generator的数据交换和错误处理"></a>Generator的数据交换和错误处理</h1><p>Generator 函数可以暂停执行和恢复执行，这是它能封装异步任务的根本原因。除此之外，它还有两个特性，使它可以作为异步编程的完整解决方案：函数体内外的数据交换和错误处理机制。</p>
+<h4 id="数据交换"><a href="#数据交换" class="headerlink" title="数据交换"></a>数据交换</h4><p>遍历器对象的next返回值是一个对象，对象包括value和done两个字段。其中done标识当前指针是否移动到末尾，而value则是yield后跟随的表达式的返回值，这就构成了从Generatord的分段yield表达式向next传参的路径。</p>
+<p>同时，next在调用的时候也可以显示传参，传入的参数作为上一次的yield表达式的结果值。我们知道在上面有说过，yield后的表达式的执行结果作为next的结果值，而整个的yield表达式是不会返回值的。但是当在调用next的时候进行显示传参，则可以将这个参数赋值给上一次的整个的yield表达式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> *<span class="title">gene1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> yieldVal1 = <span class="keyword">yield</span> gene2();</div><div class="line">  <span class="built_in">console</span>.log(yieldVal1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gene2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen = gene1();</div><div class="line">gen.next(); <span class="comment">// &#123;value:1,done:false&#125;</span></div><div class="line">gen.next(<span class="number">2</span>); <span class="comment">// &#123;value:undefined,done:true&#125;</span></div></pre></td></tr></table></figure>
+<p>如上代码所示：第一次next调用的时候，执行gene2()，返回值为1，这个值作为指针对象的value属性的值，这是从Generator内部yield表达式向外部传递数据。</p>
+<p>第二次调用next的时候，我们显示传入了参数2，这个2参数被当作<code>yield gene2()</code>整个表达式的返回值。要知道，如果不传参调用next的话，这个表达式是无值的。这是从外部向Generator内部yield表达式传递数据。</p>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>Generator 函数内部还可以部署错误处理代码，捕获函数体外抛出的错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">var</span> y = <span class="keyword">yield</span> x + <span class="number">2</span>;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'1:'</span> + e);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">var</span> z = <span class="keyword">yield</span> x + <span class="number">2</span>;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'2:'</span> + e);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> g = gen(<span class="number">1</span>);</div><div class="line">g.next();</div><div class="line">g.throw(<span class="string">'出错了'</span>); <span class="comment">// 对应于 var y = yield x + 2;</span></div><div class="line">g.next();</div><div class="line">g.throw(<span class="string">'又出错了'</span>); <span class="comment">// var z = yield x + 2;</span></div></pre></td></tr></table></figure>
+<p>注意g.throw的抛错位置很关键，因为他依赖于g这个指针当前的位置。比如上面的代码中，Generator中有两个yield表达式，对应于两个next调用，同时不同的yield表达式对应于不同的异常捕获，因此不同位置的throw对应不同的异常捕获代码。</p>
+<h1 id="Generator函数封装异步任务"><a href="#Generator函数封装异步任务" class="headerlink" title="Generator函数封装异步任务"></a>Generator函数封装异步任务</h1><p>其实通过上面错误处理的示例便可以看出，Generator很好，但唯一比较烦的就是这个next的调用。假如我们定义了一个具有100个yield表达式的Generator函数，那就要手动执行100+1次next。这期间还要穿插各种异常处理的逻辑。就定位不同的位置都能把人搞蒙。</p>
+<p>因此，要想通过Generator实现异步任务，首要的任务就是实现自动执行next。</p>
+<h4 id="Thunk函数"><a href="#Thunk函数" class="headerlink" title="Thunk函数"></a>Thunk函数</h4><p>Thunk 函数是关于求值策略中的<code>传名调用</code>的一种实现策略，用函数来替换函数参数中的表达式。将函数表达式参数转换为一个临时的求值函数传入，这样传入的就是一个函数引用，从而不需要再对表达式进行先求值，当函数执行的时候，哪里用到这个参数，再执行这个Thumk函数即可。具体的请查看<a href="http://es6.ruanyifeng.com/#docs/generator-async#Thunk-函数" target="_blank" rel="external">Thunk函数</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#回调嵌套和Promise"><span class="toc-number">1.</span> <span class="toc-text">回调嵌套和Promise</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator-函数"><span class="toc-number">2.</span> <span class="toc-text">Generator 函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator的协程"><span class="toc-number">3.</span> <span class="toc-text">Generator的协程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator的数据交换和错误处理"><span class="toc-number">4.</span> <span class="toc-text">Generator的数据交换和错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据交换"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">数据交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误处理"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">错误处理</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator函数封装异步任务"><span class="toc-number">5.</span> <span class="toc-text">Generator函数封装异步任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thunk函数"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">Thunk函数</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2017-05-21-generator/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2017-05-21-generator/&text=Generator 函数的异步应用"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2017-05-21-generator/&is_video=false&description=Generator 函数的异步应用"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Generator 函数的异步应用&body=Check out this article: http://yoursite.com/posts/2017-05-21-generator/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2017-05-21-generator/&title=Generator 函数的异步应用"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2017-05-21-generator/&name=Generator 函数的异步应用&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-104402094-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

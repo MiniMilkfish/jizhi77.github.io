@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="此篇内容为zepto中event模块源码解析 架构脑图直接上图：  架构分析event模块和核心模块架构思路相似，分为私有变量定义、私有函数定义、$对象原型属性fn的属性挂载。 下面从几个细节点说下：  focusin和focusout、mouseover和mouseout支持冒泡，而focus和blur、mouseenter和mouseleave不支持冒泡，其他的常见事件基本都支持冒泡。所以源码">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件(二)-zepto中event模块源码解析">
+<meta property="og:url" content="http://yoursite.com/posts/2016-01-23-events2/index.html">
+<meta property="og:site_name" content="Hi, You Bad Boy">
+<meta property="og:description" content="此篇内容为zepto中event模块源码解析 架构脑图直接上图：  架构分析event模块和核心模块架构思路相似，分为私有变量定义、私有函数定义、$对象原型属性fn的属性挂载。 下面从几个细节点说下：  focusin和focusout、mouseover和mouseout支持冒泡，而focus和blur、mouseenter和mouseleave不支持冒泡，其他的常见事件基本都支持冒泡。所以源码">
+<meta property="og:image" content="http://v1.freep.cn/3tb_161124220732n5g9512293.jpg">
+<meta property="og:updated_time" content="2017-08-09T07:01:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件(二)-zepto中event模块源码解析">
+<meta name="twitter:description" content="此篇内容为zepto中event模块源码解析 架构脑图直接上图：  架构分析event模块和核心模块架构思路相似，分为私有变量定义、私有函数定义、$对象原型属性fn的属性挂载。 下面从几个细节点说下：  focusin和focusout、mouseover和mouseout支持冒泡，而focus和blur、mouseenter和mouseleave不支持冒泡，其他的常见事件基本都支持冒泡。所以源码">
+<meta name="twitter:image" content="http://v1.freep.cn/3tb_161124220732n5g9512293.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>事件(二)-zepto中event模块源码解析</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/posts/2016-01-25-events3/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/posts/2016-01-22-events1/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#架构脑图"><span class="toc-number">1.</span> <span class="toc-text">架构脑图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构分析"><span class="toc-number"></span> <span class="toc-text">架构分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        事件(二)-zepto中event模块源码解析
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Hi, You Bad Boy</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-01-22T16:00:00.000Z" itemprop="datePublished">2016-01-23</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>此篇内容为zepto中event模块源码解析</p>
+<h2 id="架构脑图"><a href="#架构脑图" class="headerlink" title="架构脑图"></a>架构脑图</h2><p>直接上图：</p>
+<p><img src="http://v1.freep.cn/3tb_161124220732n5g9512293.jpg" alt="event模块架构图"></p>
+<h1 id="架构分析"><a href="#架构分析" class="headerlink" title="架构分析"></a>架构分析</h1><p>event模块和核心模块架构思路相似，分为私有变量定义、私有函数定义、$对象原型属性fn的属性挂载。</p>
+<p>下面从几个细节点说下：</p>
+<ul>
+<li>focusin和focusout、mouseover和mouseout支持冒泡，而focus和blur、mouseenter和mouseleave不支持冒泡，其他的常见事件基本都支持冒泡。所以源码中对这两组事件均作了特殊处理。<br>如果浏览器支持focusin和focusout，则用focusin和focusout代替focus和blur，如果是mouseenter和mouseleave则直接用mouseover和mouseout替换。</li>
+<li><strong>自定义事件</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建特定eventType的event对象</span></div><div class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(eventType)；</div><div class="line"><span class="comment">//根据上一步创建得到的event对象初始化事件</span></div><div class="line">event.initEvent(eventType,canBubble,cancelable);</div><div class="line"><span class="comment">//向dom节点派发事件，即事件触发 </span></div><div class="line">element.dispatchEvent(event);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>eventType 的合法值:HTMLEvents、MouseEvents、UIEvents</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>事件模块代码量很少，结构也很清晰。主要是将浏览器原生事件进行包装并支持自定义事件，浏览器原生事件包装的过程中，特别要注意几个不冒泡的事件的处理。自定义事件在上面已经简单介绍。<br>另外主要的一个核心思想便是事件回调的处理。代码中是设定一个handlers对象来存储所有的回调函数，该handlers对象的下标为对应handler的id，每个事件进行绑定时都将handler存入handlers，<br>而事件解绑时同时删除对应handler。</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#架构脑图"><span class="toc-number">1.</span> <span class="toc-text">架构脑图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#架构分析"><span class="toc-number"></span> <span class="toc-text">架构分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 jizhi.w77@foxmail.com
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-104402094-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ecdaf6decc458931c22046a191fed7dc>";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'kitty-site';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
