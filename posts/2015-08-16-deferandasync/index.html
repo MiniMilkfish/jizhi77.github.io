@@ -10,7 +10,7 @@
 <meta name="keywords" content="HTML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;script&gt;标签的defer和async属性">
-<meta property="og:url" content="http://yoursite.com/posts/2015-08-16-deferandasync/index.html">
+<meta property="og:url" content="http://wangjizhi.com/posts/2015-08-16-deferandasync/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="在前端模块化、文件合并、打包概念等没有出现的年代，原始方式的脚本引入有很多地方值得玩味，就比如到底将script插入到哪才是最合适的。众所周知，script标签在HTML文档中出现的时机决定着对应js脚本的加载时间，默认的，当script加载的时候页面是不会进行渲染的，也就是传统意义上的加载堵塞，这样很容易引起页面假死。所以我们经常将script标签放入body最底部。 可见，脚本的出现、加载、执">
 <meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-defer%E5%92%8Casync.jpg">
@@ -86,16 +86,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-08-16-deferandasync/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-08-16-deferandasync/&text=&lt;script&gt;标签的defer和async属性"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-08-16-deferandasync/&is_video=false&description=&lt;script&gt;标签的defer和async属性"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&lt;script&gt;标签的defer和async属性&body=Check out this article: http://yoursite.com/posts/2015-08-16-deferandasync/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-08-16-deferandasync/&name=&lt;script&gt;标签的defer和async属性&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-08-16-deferandasync/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&text=&lt;script&gt;标签的defer和async属性"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&is_video=false&description=&lt;script&gt;标签的defer和async属性"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&lt;script&gt;标签的defer和async属性&body=Check out this article: http://wangjizhi.com/posts/2015-08-16-deferandasync/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&name=&lt;script&gt;标签的defer和async属性&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -191,16 +191,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-08-16-deferandasync/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-08-16-deferandasync/&text=&lt;script&gt;标签的defer和async属性"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-08-16-deferandasync/&is_video=false&description=&lt;script&gt;标签的defer和async属性"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&lt;script&gt;标签的defer和async属性&body=Check out this article: http://yoursite.com/posts/2015-08-16-deferandasync/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-08-16-deferandasync/&name=&lt;script&gt;标签的defer和async属性&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-08-16-deferandasync/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&text=&lt;script&gt;标签的defer和async属性"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&is_video=false&description=&lt;script&gt;标签的defer和async属性"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&lt;script&gt;标签的defer和async属性&body=Check out this article: http://wangjizhi.com/posts/2015-08-16-deferandasync/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&title=&lt;script&gt;标签的defer和async属性"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-08-16-deferandasync/&name=&lt;script&gt;标签的defer和async属性&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

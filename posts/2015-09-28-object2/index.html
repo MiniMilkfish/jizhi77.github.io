@@ -10,7 +10,7 @@
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript对象属性描述符">
-<meta property="og:url" content="http://yoursite.com/posts/2015-09-28-object2/index.html">
+<meta property="og:url" content="http://wangjizhi.com/posts/2015-09-28-object2/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="对象描述符一般情况下，我们为对象添加属性是通过赋值来创建并显示在属性枚举中（for…in 或 Object.keys 方法）， 但这种方式添加的属性值可以被改变，也可以被删除。如果想为对象添加不可删除、不可枚举或者不可改变的属性，那么需要在添加属性的时候同时定义对应的属性描述符。 对象里目前存在的属性描述符有两种主要形式：数据描述符和存取描述符。  数据描述符是一个拥有可写或不可写值的属性； 存取">
 <meta property="og:updated_time" content="2017-08-10T15:56:28.000Z">
@@ -84,16 +84,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-09-28-object2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-09-28-object2/&text=JavaScript对象属性描述符"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-09-28-object2/&is_video=false&description=JavaScript对象属性描述符"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript对象属性描述符&body=Check out this article: http://yoursite.com/posts/2015-09-28-object2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-09-28-object2/&name=JavaScript对象属性描述符&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-09-28-object2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-09-28-object2/&text=JavaScript对象属性描述符"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-09-28-object2/&is_video=false&description=JavaScript对象属性描述符"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript对象属性描述符&body=Check out this article: http://wangjizhi.com/posts/2015-09-28-object2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-09-28-object2/&name=JavaScript对象属性描述符&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -208,16 +208,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-09-28-object2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-09-28-object2/&text=JavaScript对象属性描述符"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-09-28-object2/&is_video=false&description=JavaScript对象属性描述符"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript对象属性描述符&body=Check out this article: http://yoursite.com/posts/2015-09-28-object2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-09-28-object2/&name=JavaScript对象属性描述符&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-09-28-object2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-09-28-object2/&text=JavaScript对象属性描述符"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-09-28-object2/&is_video=false&description=JavaScript对象属性描述符"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript对象属性描述符&body=Check out this article: http://wangjizhi.com/posts/2015-09-28-object2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-09-28-object2/&title=JavaScript对象属性描述符"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-09-28-object2/&name=JavaScript对象属性描述符&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

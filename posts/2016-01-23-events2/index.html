@@ -10,7 +10,7 @@
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件(二)-zepto中event模块源码解析">
-<meta property="og:url" content="http://yoursite.com/posts/2016-01-23-events2/index.html">
+<meta property="og:url" content="http://wangjizhi.com/posts/2016-01-23-events2/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="此篇内容为zepto中event模块源码解析 架构脑图直接上图：  架构分析event模块和核心模块架构思路相似，分为私有变量定义、私有函数定义、$对象原型属性fn的属性挂载。 下面从几个细节点说下：  focusin和focusout、mouseover和mouseout支持冒泡，而focus和blur、mouseenter和mouseleave不支持冒泡，其他的常见事件基本都支持冒泡。所以源码">
 <meta property="og:image" content="http://v1.freep.cn/3tb_161124220732n5g9512293.jpg">
@@ -86,16 +86,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2016-01-23-events2/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://wangjizhi.com/posts/2016-01-23-events2/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -188,16 +188,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://yoursite.com/posts/2016-01-23-events2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2016-01-23-events2/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2016-01-23-events2/&text=事件(二)-zepto中event模块源码解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2016-01-23-events2/&is_video=false&description=事件(二)-zepto中event模块源码解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=事件(二)-zepto中event模块源码解析&body=Check out this article: http://wangjizhi.com/posts/2016-01-23-events2/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2016-01-23-events2/&title=事件(二)-zepto中event模块源码解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2016-01-23-events2/&name=事件(二)-zepto中event模块源码解析&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

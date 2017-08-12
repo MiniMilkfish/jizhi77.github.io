@@ -10,7 +10,7 @@
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 的相等性判断">
-<meta property="og:url" content="http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/index.html">
+<meta property="og:url" content="http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/index.html">
 <meta property="og:site_name" content="Hi, You Bad Boy">
 <meta property="og:description" content="操作符JavaScript 提供三种不同的比较操作符：  严格相等，使用 === （非严格）相等，使用 == 以及 Object.is （ECMAScript 6 新特性）  简单地说，两等号判等会在比较时进行类型转换；三等号判等不会进行类型转换（如果类型不同会直接返回 false ）； Object.is 在三等号判等的基础上特别处理了 NaN 、 -0 和 +0 ，保证 -0 和 +0 不再相">
 <meta property="og:image" content="http://ojd8i48oc.bkt.clouddn.com/blog-javascript-equal.png">
@@ -86,16 +86,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&text=JavaScript 的相等性判断"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&is_video=false&description=JavaScript 的相等性判断"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript 的相等性判断&body=Check out this article: http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&name=JavaScript 的相等性判断&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&text=JavaScript 的相等性判断"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&is_video=false&description=JavaScript 的相等性判断"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript 的相等性判断&body=Check out this article: http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&name=JavaScript 的相等性判断&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -377,16 +377,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&text=JavaScript 的相等性判断"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&is_video=false&description=JavaScript 的相等性判断"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JavaScript 的相等性判断&body=Check out this article: http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/posts/2015-11-03-Equality_comparisons_and_sameness/&name=JavaScript 的相等性判断&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&text=JavaScript 的相等性判断"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&is_video=false&description=JavaScript 的相等性判断"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaScript 的相等性判断&body=Check out this article: http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&title=JavaScript 的相等性判断"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://wangjizhi.com/posts/2015-11-03-Equality_comparisons_and_sameness/&name=JavaScript 的相等性判断&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
